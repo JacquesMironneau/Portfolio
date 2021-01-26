@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<title></title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% if blur: %}Je ne m'affiche que si "blur" est vrai.{% endif %}
+{% if projectname %}
+<h1> Hello {{projectname}}</h1>
+{% endif %}
