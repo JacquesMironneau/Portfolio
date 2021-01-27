@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Add a project{% endblock %}
+
+{% block content %}
+
+<form action = "" method = "post">
+    <label for = "name">Name</label><br>
+    <input type = "text" name = "name" placeholder = "Name" /><br>
+
+
+    <label for = "short_desc">addr</label><br>
+    <textarea name = "short_desc" placeholder = "Short description"></textarea><br>
+
+
+
+    <label for = "long_desc">addr</label><br>
+    <textarea name = "long_desc" placeholder = "Longer description"></textarea><br>
+    <label for = "img_url">Image url</label><br>
+    <input type = "text" name = "img_url" placeholder = "Url de l'image" /><br>
+    
+    <input type = "submit" value = "Submit" />
+ </form>
+
+{% endblock %}

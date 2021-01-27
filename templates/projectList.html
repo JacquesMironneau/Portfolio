@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Project list {% endblock %}
+
+{% block content %}
+
+{% if projectList %}
+{% for project in projectList %}
+<a href="{{ url_for('project', id=project.id)}}">{{ project.project_name }}</a>
+{% endfor %}
+
+{% endif %}
+{% endblock %}

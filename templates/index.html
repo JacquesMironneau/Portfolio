@@ -1,36 +1,34 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}">
-    <script type="text/javascript" src="test.js"></script>
-</head>
-<body>
-    <div class="content">
-        <section class="infos">
-            <span id="name">first name last name</span>
-            <div id="links">
-                <div class="button">Github</div>
-                <div class="button">Linkedin</div>
-                <div class="button">CV</div>
-                <button onclick="submit()">Click me</button> 
-            </div>
-            <div class="projects">
-                <div class="button">Projects</div>
-            </div>
-        </section>
-        
-        <aside>
-            <img src="res/pp.jpg" alt="Profile picture">
-            <div id="desc">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Dignissimos recusandae fugit reiciendis, veniam quibusdam distinctio 
-                beatae tempora magni deleniti velit molestias odio id dolore consequatur 
-                mollitia voluptatum tempore facilis expedita!
-            </div>
-        </aside> 
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} Portfolio {% endblock %}
+
+{% block content %}
+
+
+<div class="content">
+    <section class="infos">
+        <span id="name">first name last name</span>
+        <div id="links">
+            <div class="button">Github</div>
+            <div class="button">Linkedin</div>
+            <div class="button">CV</div>
+            <button onclick="submit()">Click me</button> 
+        </div>
+        <div class="projects">
+            <div class="button">Projects</div>
+        </div>
+    </section>
+    
+    <aside>
+        <img src="res/pp.jpg" alt="Profile picture">
+        <div id="desc">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+            Dignissimos recusandae fugit reiciendis, veniam quibusdam distinctio 
+            beatae tempora magni deleniti velit molestias odio id dolore consequatur 
+            mollitia voluptatum tempore facilis expedita!
+        </div>
+    </aside> 
+</div>
+
+
+{% endblock %}
