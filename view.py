@@ -79,16 +79,3 @@ def add():
         db.session.commit()
         return redirect(url_for('projects'))
 
-"""
-TODO: add delete request 
-db.session.query(Project)
-        .filter(...)
-        .delete()
-
-To delete every thing:
-python
-form view import *
-db.session.query(Project).delete()
-db.session.commit()
-
- """
