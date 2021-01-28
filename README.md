@@ -17,5 +17,5 @@ To display the existing projects
 `/projects/`
 
 TODO:
-- enhance css
-- add js
+[ ] - enhance css
+[ ] - add js
