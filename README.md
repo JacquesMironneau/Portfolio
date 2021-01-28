@@ -16,6 +16,6 @@ To add a project:
 To display the existing projects  
 `/projects/`
 
-TODO:
-[ ] - enhance css
-[ ] - add js
+TODO:  
+[ ] enhance css  
+[ ] add js  
