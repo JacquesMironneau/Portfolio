@@ -3,4 +3,94 @@ dark : #222831
 grey : #393e46
 yellow : #ffd369
 white : #eee
-/*
+*/
+
+body {
+    background-color: #222831;
+}
+
+.content {
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infos {
+    display: flexbox;
+    width: 60%;
+    margin: 5% 0%;
+    padding: 5%;
+}
+
+#name {
+    font-weight: bold;
+    width: 20%;
+    font-size: 36pt;
+    text-transform: capitalize;
+    color: #eee;
+}
+
+
+.profile {
+    display: block;
+    width: 40%;
+    margin: 5% 10% 5% 0%;
+    background:#393e46;
+    padding: 4%;
+}
+
+#profile-picture {
+    display: block;
+    position: relative;
+    width: 15vw;
+    height: 15vw;
+    border-radius: 50%;
+    /* background-image: url(https://avatars.githubusercontent.com/u/34798699?s=400&u=d7b3c05d7858d26b9a2a4d6e627296dd0dc28a1e&v=4); */
+    background-image: url(https://avatars.githubusercontent.com/u/42646590?s=400&u=787b5252e1c128be865794dba1e80ee5b3488634&v=4);
+    left: 22%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: fill;
+    box-shadow: 10px 10px 15px #222;
+}
+
+#desc {
+    display: block;
+    position: relative;
+    margin-top: 20%;
+    padding: 10% 0%;
+    justify-content: center;
+    text-overflow: hidden;
+    text-indent: 1cm;
+    font-size: 24pt;
+    color: #eee;
+}
+
+#links {
+    height: 50%;
+    display: flexbox;
+    flex-direction: column;
+    flex-shrink: inherit;
+}
+
+.button {
+    display: flex;
+    margin: 5%;
+    border-radius: 12px;
+    width: 20%;
+    height: 20%;
+    background: #ffd339;
+}
+
+.projects {
+    display: flex;
+    flex-direction: inherit;
+    flex-shrink: inherit;
+    height: 50%;
+
+}

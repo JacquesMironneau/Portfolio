@@ -2,7 +2,11 @@ from flask import Flask, render_template, abort, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from run import app
 from models import db, Project, Project_files
+"""
+View (routing) of the project
 
+
+"""
 
 @app.route('/')
 def hello(name=None):
@@ -11,7 +15,6 @@ def hello(name=None):
     """
     return render_template('index.html')
 
-   
 @app.route('/projects/')
 def projects():
     """
@@ -20,9 +23,6 @@ def projects():
     """
     result = db.session.query(Project).all()
     return render_template('projectList.html', projectList = result)
-
-
-
 
 @app.route('/project/<id>')
 def project(id = None):
@@ -36,7 +36,6 @@ def project(id = None):
         return render_template('project.html', project = res)
     else:
         abort(404)
-
 
 @app.route('/about/')
 def about():
@@ -58,4 +57,3 @@ def add():
         db.session.add(project)
         db.session.commit()
         return redirect(url_for('projects'))
-

@@ -1,6 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 from run import app
+"""
+Models of the web site:
+A Project is composed of 0..n project files
+A project file is basically an url related to a project
 
+"""
 db = SQLAlchemy(app)
 
 
