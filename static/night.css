@@ -39,20 +39,20 @@ body {
 .profile {
     display: block;
     width: 40%;
-    margin: 5% 10% 5% 0%;
-    background:#393e46;
+    margin: 10% 10% 10% 0%;
+    background: #222831;
     padding: 4%;
 }
 
 #profile-picture {
     display: block;
     position: relative;
-    width: 15vw;
-    height: 15vw;
+    width: 14vw;
+    height: 14vw;
     border-radius: 50%;
     /* background-image: url(https://avatars.githubusercontent.com/u/34798699?s=400&u=d7b3c05d7858d26b9a2a4d6e627296dd0dc28a1e&v=4); */
     background-image: url(https://avatars.githubusercontent.com/u/42646590?s=400&u=787b5252e1c128be865794dba1e80ee5b3488634&v=4);
-    left: 22%;
+    left: 23%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: fill;
@@ -62,13 +62,14 @@ body {
 #desc {
     display: block;
     position: relative;
-    margin-top: 20%;
-    padding: 10% 0%;
+    margin-top: 10%;
+    padding: 10% 5%;
     justify-content: center;
     text-overflow: hidden;
     text-indent: 1cm;
     font-size: 24pt;
     color: #eee;
+    background: #393e46;
 }
 
 #links {
@@ -81,10 +82,51 @@ body {
 .button {
     display: flex;
     margin: 5%;
-    border-radius: 12px;
     width: 20%;
     height: 20%;
+}
+
+
+.button-foreground {
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    background: #393e46;
+    border-radius: 12px 12px 0px 0px;
+    z-index: 3;
+}
+
+.button-icon {
+    display: block;
+    color: #ffd339;
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24pt;
+    overflow: hidden;
+    position: absolute;
+    z-index: 4;
+    transition: ease-in 0.8s;
+}
+
+.button-link {
+    position: absolute;
+    z-index: 2;
+    transition: ease-in-out 0.5s;
+}
+
+.button-background {
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 150px;
     background: #ffd339;
+    border-radius: 12px;
+    z-index: 1;
+    transition: ease-in 0.3s;
 }
 
 .projects {
@@ -94,3 +136,4 @@ body {
     height: 50%;
 
 }
+
