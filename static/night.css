@@ -11,7 +11,7 @@ body {
 
 .content {
     width: 90%;
-    height: 90%;
+    height: 80%;
     margin: 5%;
     position: absolute;
     top: 5%;
@@ -39,7 +39,7 @@ body {
 .profile {
     display: block;
     width: 40%;
-    margin: 10% 10% 10% 0%;
+    margin: 5% 10% 5% 0%;
     background: #222831;
     padding: 4%;
 }
@@ -63,27 +63,28 @@ body {
     display: block;
     position: relative;
     margin-top: 10%;
-    padding: 10% 5%;
+    padding: 10%;
     justify-content: center;
     text-overflow: hidden;
     text-indent: 1cm;
     font-size: 24pt;
     color: #eee;
     background: #393e46;
+    border-radius: 15px 4px 15px 4px;
 }
 
 #links {
     height: 50%;
-    display: flexbox;
+    display:block;
     flex-direction: column;
     flex-shrink: inherit;
 }
 
 .button {
-    display: flex;
-    margin: 5%;
-    width: 20%;
-    height: 20%;
+    display: block;
+    width: 200px;
+    height: 160px;
+    position: absolute;
 }
 
 
@@ -95,6 +96,7 @@ body {
     background: #393e46;
     border-radius: 12px 12px 0px 0px;
     z-index: 3;
+    transition: ease-in 0.15s;
 }
 
 .button-icon {
@@ -109,13 +111,36 @@ body {
     overflow: hidden;
     position: absolute;
     z-index: 4;
-    transition: ease-in 0.8s;
+    transition: ease-in 0.15s;
+    top: 60px;
+    left: 75px;
 }
+
+.button-text {
+    display: block;
+    color: #ffd339;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24pt;
+    overflow: hidden;
+    position: absolute;
+    z-index: 4;
+    transition: ease-in 0.8s;
+    top: 60px;
+    left: 75px;
+}
+
 
 .button-link {
     position: absolute;
     z-index: 2;
-    transition: ease-in-out 0.5s;
+    transition: ease-in-out 0.1s;
+    width: 200px;
+    justify-content: center;
+    text-align: center;
+    top: 120px;
+    left:0px;
+    font-size: 18pt;
 }
 
 .button-background {
@@ -126,7 +151,24 @@ body {
     background: #ffd339;
     border-radius: 12px;
     z-index: 1;
-    transition: ease-in 0.3s;
+    transition: ease-in 0.2s;
+    top:10px;
+}
+
+.button:hover .button-background {
+    top: 20px;
+}
+
+.button:hover .button-foreground {
+    height: 130px;
+}
+
+.button:hover .button-icon {
+    top: 45px;
+}
+
+.button:hover .button-link {
+    top:130px;
 }
 
 .projects {
@@ -137,3 +179,44 @@ body {
 
 }
 
+#github-button {
+    top: 390px;
+    left: 90px;
+}
+
+#linkedin-button {
+    top: 390px; 
+    left: 310px;
+}
+
+#about-button {
+    top:390px;
+    left:530px;
+}
+
+#project-button {
+    top:590px;
+    left:270px;
+    width: 300px;
+}
+
+#project-button .button-background {
+    width: 300px;
+}
+
+#project-button .button-foreground {
+    width: 300px;
+}
+
+#project-button .button-text {
+    width: 300px;
+    left: 65px;
+}
+
+#project-button .button-text::after {
+    content: '';
+}
+
+#project-button .button-link {
+    width: 300px;
+}
