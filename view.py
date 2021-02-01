@@ -2,6 +2,8 @@ from flask import Flask, render_template, abort, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from run import app, ALLOWED_EXTENSIONS
 from models import db, Project, Project_files
+from werkzeug.utils import secure_filename
+import os
 """
 View (routing) of the project
 
@@ -67,14 +69,21 @@ def allowed_file(filename):
     """
 @app.route('/upload/', methods = ['GET','POST'])
 def upload():
+    print(request)
     if request.method == 'POST':
-        file = request.file['file']
+
+        file = request.files['file']
         if file.filename == '':
             # handle no selected file
             return 'no selected file'
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            project_id = request.form['projects']
+
+            db.session.add(Project_files(project_id, filename))
+            db.session.commit()
+            return redirect(url_for('projects'))
     else:
         result = db.session.query(Project).all()
         return render_template('upload.html', projectList = result)
