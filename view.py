@@ -1,6 +1,10 @@
 from flask import Flask, render_template, abort, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
+<<<<<<< HEAD
 from run import app, ALLOWED_EXTENSIONS
+=======
+from run import app, ALLALLOWED_EXTENSIONS
+>>>>>>> 1406fff236f905a923efa3c254010cffcac0a1dc
 from models import db, Project, Project_files
 """
 View (routing) of the project
@@ -62,21 +66,19 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/upload/', methods = ['GET','POST'])
-def upload():
     """
     upload a file in the FILE_FOLDER (use for images/video mainly)
     """
+@app.route('/upload/', methods = ['GET','POST'])
+def upload():
     if request.method == 'POST':
-        print(request.File)
-        return ' '
-        # file = request.file['file']
-        # if file.filename == '':
-        #     # handle no selected file
-        #     return 'no selected file'
-        # if file and allowed_file(file.filename):
-        #     filename = secure_filename(file.filename)
-        #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file = request.file['file']
+        if file.filename == '':
+            # handle no selected file
+            return 'no selected file'
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     else:
         result = db.session.query(Project).all()
         return render_template('upload.html', projectList = result)

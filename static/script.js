@@ -1,25 +1,31 @@
+const NEW_HEIGHT = "120px"
+const FOREGROUND_INDEX = 5
+
+let prevHeight = ""
 
 window.onload = () => {
-    console.log("Script loaded");
 
-    // let buttons = document.getElementsByClassName("button");
+    const enter = (event) => {
 
-    // const buttons = document.getElementsByClassName("button");
+        const bgButton = event.target.childNodes[FOREGROUND_INDEX]
+        console.log(bgButton);
 
-    const enter = () => {
-
-        console.log("you entered");
+        prevHeight = bgButton.style.height
+        bgButton.style.height = NEW_HEIGHT
     }
 
-    const leave = () => {
-        console.log("you leaved");
-
+    const leave = (event) => {
+        const bgButton = event.target.childNodes[FOREGROUND_INDEX]
+        console.log(bgButton);
+        bgButton.style.height = prevHeight
     }
-    document.querySelectorAll('.button').forEach(item => {
 
-        item.addEventListener('mouseenter', enter)
-        item.addEventListener('mouseleave',leave)
-    })
+
+    // document.querySelectorAll('.button').forEach(item => {
+
+    //     item.addEventListener('mouseenter', enter)
+    //     item.addEventListener('mouseleave', leave)
+    // })
         
 };
 
