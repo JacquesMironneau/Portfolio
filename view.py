@@ -1,10 +1,6 @@
 from flask import Flask, render_template, abort, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
-<<<<<<< HEAD
 from run import app, ALLOWED_EXTENSIONS
-=======
-from run import app, ALLALLOWED_EXTENSIONS
->>>>>>> 1406fff236f905a923efa3c254010cffcac0a1dc
 from models import db, Project, Project_files
 """
 View (routing) of the project
