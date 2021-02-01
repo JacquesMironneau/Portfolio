@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Upload a file{% endblock %}
+
+{% block content %}
+
+<form action = "" method = "post" enctype=multipart/form-data">
+    <label for = "file">File</label><br>
+    <input type=file name=file> <br>
+
+    {% if projectList %}
+
+    <label for = "projects">Projet</label><br>
+
+    <select name="projects" id="projects">
+        
+        {% for project in projectList %}
+            <option value="{{ project.id }}">{{  project.project_name }}</option>
+        {% endfor %}
+      </select>
+
+      {% endif %}
+
+    
+    <input type = "submit" value = "Upload" />
+ </form>
+
+{% endblock %}
