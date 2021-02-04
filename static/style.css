@@ -21,3 +21,19 @@ a:hover {
     text-decoration: none;
     color: #222831;   
 }
+
+.projectTitle {
+    margin-left: 20vh;
+    font-size: 8em;
+    transition: ease-in 0.8s;
+
+}
+
+.projectTitle:hover {
+    text-decoration: none;
+    color: #ffd369;
+}
+
+.projectList {
+
+}
