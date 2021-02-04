@@ -2,24 +2,31 @@
 
 {% block title %}Add a project{% endblock %}
 
-{% block content %}
+{% block content %} 
+<h2>Add a project</h2>
 
-<form action = "" method = "post">
-    <label for = "name">Name</label><br>
-    <input type = "text" name = "name" placeholder = "Name" /><br>
+<form id="add-project" action = "" method = "post">
+    <input type="text" name="name" placeholder = "Project name"/><br>
 
+    <textarea name="short_desc" placeholder="Short description"></textarea><br>
 
-    <label for = "short_desc">addr</label><br>
-    <textarea name = "short_desc" placeholder = "Short description"></textarea><br>
+    <textarea id="long-desc" name="long_desc" placeholder="Long description"></textarea><br>
 
-
-
-    <label for = "long_desc">addr</label><br>
-    <textarea name = "long_desc" placeholder = "Longer description"></textarea><br>
-    <label for = "img_url">Image url</label><br>
-    <input type = "text" name = "img_url" placeholder = "Url de l'image" /><br>
+    <!-- TODO: merge with add/upload files -->
     
-    <input type = "submit" value = "Submit" />
+    <input id="submit" type="submit" value="+" accesskey="Return"/>
  </form>
 
 {% endblock %}
+
+<script>
+    // window.onload =() => {
+    //     const form = document.getElementById('add-project');
+    //     const sub =document.getElementById('submit');
+
+    //     let form_fields = form.childNodes;
+    //      form_fields.forEach( (field) => {
+    //          if (!(field.nodeValue === "" )) sub.removeAttribute("disabled");
+    //      })
+    // }
+</script>

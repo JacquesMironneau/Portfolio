@@ -3,23 +3,32 @@
 {% block title %} {{ project.project_name }} {% endblock %}
 
 {% block content %}
+<div class="content">
+    <section class="project-infos">
+        <div class="background-wrapper">
+        </div>
+        {% if project %}
+        
+        <div class="project">
+            <span class="project-name"> {{ project.project_name }} </span>
+            <div class="project-short-desc">
+                <p> {{ project.short_desc }} </p>
+            </div>
+            <div class="project-long-desc">
+                <p> {{ project.long_desc }} </p>
+            </div>
+            {% for file in project.attached_files %}
+            <span> {{ file.file_url }} </span>
+            <br>
+            
+            {% endfor %}
+        </div>
+        
+        {% endif %}
 
-{% if project %}
-
-<div class="project">
-    <span> {{ project.project_name }} </span>
-    <br>
-    <span> {{ project.short_desc }} </span>
-    <br>
-    <span> {{ project.long_desc }} </span>
-    <br>
-    {% for file in project.attached_files %}
-    <span> {{ file.file_url }} </span>
-    <br>
-
-    {% endfor %}
+    </section>
+    
+    
+    
 </div>
-
-{% endif %}
-
 {% endblock %}

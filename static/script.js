@@ -1,31 +1,25 @@
-const NEW_HEIGHT = "120px"
-const FOREGROUND_INDEX = 5
+// window.onload = () => {
 
-let prevHeight = ""
+    // let currentProject = ""
 
-window.onload = () => {
+    // const hover = (event) => {
 
-    const enter = (event) => {
+    //     const parent = document.querySelector('.desc')
 
-        const bgButton = event.target.childNodes[FOREGROUND_INDEX]
-        console.log(bgButton);
+    //     console.log(event.target.firstChild.data);
 
-        prevHeight = bgButton.style.height
-        bgButton.style.height = NEW_HEIGHT
-    }
+    //     // Add the current child
+    //     let test = '{{ projectList }}'
+    //     console.log(test)
 
-    const leave = (event) => {
-        const bgButton = event.target.childNodes[FOREGROUND_INDEX]
-        console.log(bgButton);
-        bgButton.style.height = prevHeight
-    }
+    //     // parent.appendChild(child)
+    // }
 
+    // document.querySelectorAll('.projectTitle').forEach(item => {
 
-    // document.querySelectorAll('.button').forEach(item => {
-
-    //     item.addEventListener('mouseenter', enter)
-    //     item.addEventListener('mouseleave', leave)
+    //     console.log(item)
+    //     item.addEventListener('mouseover', hover)
     // })
         
-};
+// };
 
