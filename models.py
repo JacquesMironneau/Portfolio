@@ -1,3 +1,5 @@
+#coding : utf-8
+
 from flask_sqlalchemy import SQLAlchemy
 from run import app
 """
@@ -26,7 +28,7 @@ class Project(db.Model):
         self.long_desc = long_desc
     
     def __str__(self):
-        return f"   project_id: {self.id}\n    name: {self.project_name}\n    short description: {self.short_desc}\n    osef: {self.long_desc}"
+        return f"project_id: {self.id}\n   name: {self.project_name}\n    short description: {self.short_desc}\n    osef: {self.long_desc}\n"
         
 class Project_files(db.Model):
     """
@@ -37,23 +39,25 @@ class Project_files(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     file_url = db.Column(db.String(100))
+    is_background = db.Column(db.Boolean)
 
 
-    def __init__(self, project_id, file_url):
+    def __init__(self, project_id, file_url, is_background):
         self.project_id = project_id
         self.file_url = file_url
+        self.is_background = is_background
 
     def __str__(self):
-        return f"    file_id = {self.id}\n    idproject = {self.project_id}\n    url :{self.file_url} \n"
+        return f"    file_id = {self.id}\n    idproject = {self.project_id}\n    url :{self.file_url} \n isbackground {self.is_background}\n"
 
 
 def init_db():
     db.drop_all()
     db.create_all()
 
-    file1 = Project_files(1,"/url/url/toma") 
-    file2 = Project_files(1,"/url/aurl/toma") 
-    file3 = Project_files(1,"/url/burl/toma") 
+    file1 = Project_files(1,"/url/url/toma", False) 
+    file2 = Project_files(1,"/url/aurl/toma", True) 
+    file3 = Project_files(1,"/url/burl/toma", False) 
     
     project = Project('Projetnom', 'description pitite', 'long')
     db.session.add(project)

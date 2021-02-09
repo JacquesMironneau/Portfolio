@@ -1,20 +1,22 @@
 {% extends "base.html" %}
+
+
 {% block title %} Project list {% endblock %}
 
 {% block content %}
-<div class="content">
-    <h1>My projects</h1>
-    <div class="projectList">
+<div class="content grid grid-cols-2 gap-2 my-32">
+    <!-- <h1>My projects</h1> -->
+    <div class="projectList justify-self-center">
     {% if projectList %}
     {% for project in projectList %}
-        <a class="projectTitle" href="{{ url_for('project', id=project.id)}}">{{ project.project_name }}</a>
+        <a class="projectTitle text-black-200 text-6xl hover:text-yellow-500 transition ease-in duration-200" href="{{ url_for('project', id=project.id)}}">{{ project.project_name }}</a>
         <br/>
+        <br>
     {% endfor %}
     {% endif %}
-
     </div>
 
-    <div class="desc">
+    <div class="desc text-yellow-500 text-xl justify-self-center my-64 transition ease-in duration-200">
 
     </div>
 
@@ -51,31 +53,19 @@
     console.log(names)
     console.log(files)
 
-    let currentProject = ""
-
     const hover = (event) => {
 
         const parent = document.querySelector('.desc')
 
+        parent.innerHTML = ""
         let index = event.target.pathname.slice(-1)
         let int_index = Number(index)
         int_index--
-        if (currentProject === "")
-        {
-            
-        }
-        else
-        {
-            
-        }
 
         let node = document.createElement("p")
         let text = document.createTextNode(desc[int_index])
         node.appendChild(text)
         parent.appendChild(node)
-    
-
-        // parent.appendChild(child)
     }
 
     document.querySelectorAll('.projectTitle').forEach(item => {

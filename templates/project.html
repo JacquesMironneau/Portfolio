@@ -1,34 +1,50 @@
 {% extends "base.html" %}
 
-{% block title %} {{ project.project_name }} {% endblock %}
+
+{% block title %} {{ project_name }} {% endblock %}
 
 {% block content %}
-<div class="content">
-    <section class="project-infos">
-        <div class="background-wrapper">
-        </div>
-        {% if project %}
-        
-        <div class="project">
-            <span class="project-name"> {{ project.project_name }} </span>
-            <div class="project-short-desc">
-                <p> {{ project.short_desc }} </p>
-            </div>
-            <div class="project-long-desc">
-                <p> {{ project.long_desc }} </p>
-            </div>
-            {% for file in project.attached_files %}
-            <span> {{ file.file_url }} </span>
-            <br>
-            
-            {% endfor %}
-        </div>
-        
-        {% endif %}
-
-    </section>
-    
-    
-    
+<div class="container mx-auto bg-gray-800 w-full h-full">
+    <div class="z-index-10 w-full"><img src="https://via.placeholder.com/2560x1440" alt=""></div>
+    <div class="block absolute inset-0 w-full h-full z-index-20"></div>
 </div>
+<div class="absolute inset-0 container z-index-30 w-full h-full">
+    <span class="object-none object-left-bottom text-white font-semibold text-8xl object-left"> {{ project_name }} </span>
+    <div class="">
+        <p> {{ short_desc }} </p>
+    </div>
+    <div class="">
+        <p> {{ long_desc }} </p>
+    </div>
+    <h3>Images autres</h3>
+
+    
+    {%if project_image_0 %}
+    <h3>Image bg</h3>
+    <p>{{background_image}}</p>
+    {% endif %}
+
+    {%if project_image_0 %}
+    <h3>Image 1</h3>
+    <p>{{project_image_0}}</p>
+    {% endif %}
+
+    {%if project_image_1 %}
+    <h3>Image 2</h3>
+    <p>{{project_image_1}}</p>
+    {% endif %}
+
+    {%if project_image_2 %}
+    <h3>Image 3</h3>
+    <p>{{project_image_2}}</p>
+    {% endif %}
+
+    <!--
+
+    {%if project_image_N  %}
+    <h3>Image N+1</h3>
+    <p>{{project_image_N}}</p>
+    {% endif %}
+    -->
+</div> 
 {% endblock %}
