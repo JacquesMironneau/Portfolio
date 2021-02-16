@@ -4,20 +4,19 @@
 {% block title %} Project list {% endblock %}
 
 {% block content %}
-<div class="content grid grid-cols-2 gap-2 my-32">
+<div class="content grid grid-cols-2 gap-0 my-32 font-mono">
     <!-- <h1>My projects</h1> -->
     <div class="projectList justify-self-center">
-    {% if projectList %}
-    {% for project in projectList %}
-        <a class="projectTitle text-black-200 text-6xl hover:text-yellow-500 transition ease-in duration-200" href="{{ url_for('project', id=project.id)}}">{{ project.project_name }}</a>
-        <br/>
-        <br>
-    {% endfor %}
-    {% endif %}
+        {% if projectList %}
+            {% for project in projectList %}
+                <a class="projectTitle  text-gray-700 text-6xl hover:text-gray-200 transition ease-in duration-200" href="{{ url_for('project', id=project.id)}}">{{ project.project_name }}</a>
+                <br/>
+                <br>
+            {% endfor %}
+        {% endif %}
     </div>
-
-    <div class="desc text-yellow-500 text-xl justify-self-center my-64 transition ease-in duration-200">
-
+    <div class="desc text-white text-xl  my-16 border-2 border-white rounded-lg mr-48 pb-32 pt-8 pl-8 pr-8 break-words bg-gray-700">
+<!-- transition ease-in duration-200 -->
     </div>
 
 </div>
