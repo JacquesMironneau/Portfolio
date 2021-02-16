@@ -16,6 +16,8 @@
         {% endif %}
     </div>
     <div class="desc text-white text-xl  my-16 border-2 border-white rounded-lg mr-48 pb-32 pt-8 pl-8 pr-8 break-words bg-gray-700">
+        <p id="prompt" class="text-white"></p>
+        <p id="text" class="text-gray-300"></p>
 <!-- transition ease-in duration-200 -->
     </div>
 
@@ -54,17 +56,18 @@
 
     const hover = (event) => {
 
-        const parent = document.querySelector('.desc')
 
-        parent.innerHTML = ""
         let index = event.target.pathname.slice(-1)
         let int_index = Number(index)
         int_index--
 
-        let node = document.createElement("p")
-        let text = document.createTextNode(desc[int_index])
-        node.appendChild(text)
-        parent.appendChild(node)
+        const prompt = document.querySelector('#prompt')
+        console.log(prompt.innerHTML)
+        prompt.innerHTML = "~/projects/" + names[int_index].toLowerCase().replace(/ /g,"_")  + " $"
+
+        const description = document.querySelector("#text")
+        description.innerHTML =desc[int_index]
+
     }
 
     document.querySelectorAll('.projectTitle').forEach(item => {
