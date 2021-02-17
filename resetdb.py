@@ -15,8 +15,10 @@ print('Project database successfully dumped')
 
 dir = 'upload'
 
-for file in os.listdir(dir):
-    os.remove(os.path.join(dir,file))
+if os.path.exists(dir):
+    for file in os.listdir(dir):
+        os.remove(os.path.join(dir,file))
 
-print('Images removed')
-
+    print('Images removed')
+else:
+    os.makedirs(dir)

@@ -5,49 +5,52 @@
 {% block content %}
 
 
-<div class="content">
-    <section class="infos">
-        <span id="name">Jean Oskour</span>
-        <div id="links">
-            <div id="github-button" class="button">
-                <div class="button-background"></div>
-                <div class="button-link">
+<div class="content container mx-auto flex w-full h-full py-36 space-x-4">
+    <section class="infos w-1/2">
+        <span id="name" class="text-black text-5xl font-black block mt-36">Thomas Durand</span>
+        <span class="underline block mt-6 h-4 rounded-lg w-2/3 bg-gradient-to-r from-yellow-500 to-pink-500 via-red-500"></span>
+        <div id="links" class="w-5/6 h-2/3 flex container space-x-16 mt-24 -ml-16">
+            <div id="github-button" class="h-1/2 w-1/3">
+                <div class="button-background fixed block h-36 w-40 z-30 bg-gray-700 rounded-lg"></div>
+                <div class="button-link relative z-20 fixed text-center">
                     <a href="#github">github.com</a>
                 </div>
-                <div class="button-foreground"></div>
-                <div class="button-icon">Git</div>
+                <div class="button-foreground fixed block h-36 w-40 z-10 bg-blue-500 rounded-lg"></div>
+                <div class="button-icon relative z-40 fixed text-center w-32 h-32 block ml-8 rounded-full hover:bg-gradient-to-r from-yellow-500 to-pink-500 via-red-500 font-black">Git</div>
             </div>
-            <div id="linkedin-button" class="button">
-                <div class="button-background"></div>
-                <div class="button-link">
+            <div id="linkedin-button" class="button h-1/2 w-1/3 group">
+                <div class="button-background fixed block h-36 w-40 z-30 bg-gray-700 rounded-lg"></div>
+                <div class="button-link relative z-20 fixed text-center">
                     <a href="#linkedin">linkedin.com/user</a>
                 </div>
-                <div class="button-foreground"></div>
-                <div class="button-icon">Ln</div>
+                <div class="button-foreground fixed block h-36 w-40 z-10 bg-blue-500 rounded-lg"></div>
+                <div class="button-icon relative z-40 fixed text-center w-32 h-32 block ml-8 rounded-full group-hover:bg-gradient-to-r group-hover:from-yellow-500 group-hover:to-pink-500 group-hover:via-red-500 font-black">Ln</div>
             </div>
-            <div id="about-button" class="button">
-                <div class="button-background"></div>
-                <div class="button-link">
+            <div id="about-button" class="button h-1/2 w-1/3">
+                <div class="button-background fixed block h-36 w-40 z-30 bg-gray-700 rounded-lg"></div>
+                <div class="button-link relative z-20 fixed text-center">
                     <a href="#me">about</a>
                 </div>
-                <div class="button-foreground"></div>
-                <div class="button-icon">Me</div>
+                <div class="button-foreground fixed block h-36 w-40 z-10 bg-blue-500 rounded-lg"></div>
+                <div class="button-icon relative z-40 fixed block text-center w-32 h-32 ml-8 rounded-full hover:bg-gradient-to-r from-yellow-500 to-pink-500 via-red-500 font-black te">Me</div>
             </div>
         </div>
         <div class="projects">
-            <div id="project-button" class="button">
-                <div class="button-background"></div>
-                <div class="button-link">
+            <div id="project-button" class="button h-1/2 w-1/3 mt-16">
+                <div class="button-background relative block h-full w-full z-10"></div>
+                <div class="button-link relative z-20">
                     <a href="./projects">projects</a>
                 </div>
-                <div class="button-foreground"></div>
-                <div class="button-text">View more</div>
+                <div class="button-foreground relative block h-full w-full z-30"></div>
+                <div class="button-text relative z-40">View more</div>
             </div>
         </div>
     </section>
     
-    <aside class="profile">
-        <div id="profile-picture"></div>
+    <aside id="terminal" class="profile w-2/3 h-5/6 text-white text-xl w-1/2 my-16 rounded-lg mr-48 pb-32 pt-8 pl-8 pr-8 break-words bg-gray-700">
+        <label for="prompt" class="font-black">~/ $ </label>
+        <input name="prompt" type="text" class="cmd bg-gray-700 hover:border-none focus:outline-none text-white" >
+        <div id="profile-picture" class="mefetch-picture"></div>
         <div id="desc">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
             Dignissimos recusandae fugit reiciendis, veniam quibusdam distinctio 
