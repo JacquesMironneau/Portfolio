@@ -6,21 +6,31 @@
 {% block content %}
 <div class="content grid grid-cols-2 gap-0 my-32 font-mono">
     <!-- <h1>My projects</h1> -->
-    <div class="projectList justify-self-center">
+    <div class="projectList justify-self-center my-64 ">
         {% if projectList %}
             {% for project in projectList %}
-                <a class="projectTitle  text-gray-700 text-6xl hover:text-gray-200 transition ease-in duration-200" href="{{ url_for('project', id=project.id)}}">{{ project.project_name }}</a>
+                <a class="projectTitle   text-gray-500 text-6xl hover:text-gray-800 transition ease-in duration-200" href="{{ url_for('project', id=project.id)}}">{{ project.project_name }}</a>
                 <br/>
                 <br>
             {% endfor %}
         {% endif %}
     </div>
-    <div class="desc text-white text-xl  my-16 border-2 border-white rounded-lg mr-48 pb-32 pt-8 pl-8 pr-8 break-words bg-gray-700">
+    <div class="desc text-white text-xl  my-16 rounded-lg mr-48 pb-32 pt-8 pl-8 pr-8 break-words bg-gray-700">
         <p id="prompt" class="text-white"></p>
+        <img id="img">
+
         <p id="text" class="text-gray-300"></p>
+        
 <!-- transition ease-in duration-200 -->
     </div>
 
+    <style>
+        #img {
+            float: left;
+            width: 12vw;
+            margin: 1.2em;
+        }
+    </style>
 </div>
 <script>
 
@@ -65,9 +75,12 @@
         console.log(prompt.innerHTML)
         prompt.innerHTML = "~/projects/" + names[int_index].toLowerCase().replace(/ /g,"_")  + " $"
 
+
         const description = document.querySelector("#text")
         description.innerHTML =desc[int_index]
 
+        const img = document.querySelector("#img")
+        img.src= "{{ url_for('display_image', filename='me_true_irl.jpg') }}"
     }
 
     document.querySelectorAll('.projectTitle').forEach(item => {

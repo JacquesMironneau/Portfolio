@@ -4,27 +4,64 @@
 {% block title %} {{ project_name }} {% endblock %}
 
 {% block content %}
-<div class="container mx-auto bg-gray-800 w-full h-full">
+<!-- <div class="container mx-auto bg-gray-800 w-full h-full">
     <div class="z-index-10 w-full"><img src="https://via.placeholder.com/2560x1440" alt=""></div>
     <div class="block absolute inset-0 w-full h-full z-index-20"></div>
-</div>
-<div class="absolute inset-0 container z-index-30 w-full h-full">
-    <span class="object-none object-left-bottom text-white font-semibold text-8xl object-left"> {{ project_name }} </span>
+</div> -->
+
+<!-- {%if background_image %}
+<style>background-image: {{background_image}};</style>
+    <h3>Image bg</h3>
+    <p>{{ background_image }}</p>
+{% endif %} -->
+
+
+<div class="absolute inset-0 container z-index-30 w-2/3 h-full m-auto p-8">
+    
+    <h2 class="object-none object-left-bottom font-mono text-7xl text-center mt-16"> {{ project_name }} </h2>
+    
+    <div class="p-16">
+    </div>
     <div class="">
+        {%if project_image_0 %}
+            <h3>Image 1</h3>
+            <img id="img_0" src="{{ url_for('display_image', filename=project_image_1) }}">
+            <p class="text-justify">{{project_image_0}}</p>
+        {% endif %}
         <p> {{ short_desc }} </p>
     </div>
-    <div class="">
+
+    <br>
+    <div class="mt-32">
+        {%if project_image_1 %}
+            <h3>Image 2</h3>
+            <img id="img_1" src="{{ url_for('display_image', filename=project_image_0) }}">
+            <p class= "text-justify" >{{project_image_1}}</p>
+        {% endif %}
         <p> {{ long_desc }} </p>
     </div>
-    <h3>Images autres</h3>
+</div>
 
+ 
+
+    <style>
+        img {
+            width: 25vw;
+            margin: 1.2em;
+
+        }
+        #img_1 {
+            float: left;
+            /*height: 20vh;*/
+        }
+
+        #img_0 {
+            float:right;
+        }
+    </style>
     
-    {%if project_image_0 %}
-    <h3>Image bg</h3>
-    <p>{{background_image}}</p>
-    {% endif %}
 
-    {%if project_image_0 %}
+    <!-- {%if project_image_0 %}
     <h3>Image 1</h3>
     <p>{{project_image_0}}</p>
     {% endif %}
@@ -32,7 +69,7 @@
     {%if project_image_1 %}
     <h3>Image 2</h3>
     <p>{{project_image_1}}</p>
-    {% endif %}
+    {% endif %} -->
 
     {%if project_image_2 %}
     <h3>Image 3</h3>

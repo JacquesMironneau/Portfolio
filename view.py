@@ -33,20 +33,21 @@ def project(id = None):
     """
     res = db.session.query(Project).filter(Project.id == id).first()
 
+    if not res:
+        abort(404)
+
     bg_img = [k.file_url for k in res.attached_files if k.is_background]
 
     tmp = [k for k in res.attached_files if not k.is_background]
     other_images = {f"project_image_{str(k)}": tmp[k].file_url for k in range(len(tmp)) if not tmp[k].is_background}
 
-    if res:
-        return render_template('project.html', 
-            project_name = res.project_name,
-            short_desc= res.short_desc, 
-            long_desc = res.long_desc, 
-            background_image = bg_img[0] if bg_img else None,
-            **other_images)
-    else:
-        abort(404)
+    return render_template('project.html', 
+        project_name = res.project_name,
+        short_desc= res.short_desc, 
+        long_desc = res.long_desc, 
+        background_image = bg_img[0] if bg_img else None,
+        **other_images)
+
 
 @app.route('/about/')
 def about():
@@ -91,11 +92,14 @@ def upload():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             project_id = request.form['projects']
-
-
-            db.session.add(Project_files(project_id, filename, True if request.form['is_background'] else False))
+            p=Project_files(project_id, filename, True if request.form.getlist('is_background') else False)
+            db.session.add(p)
             db.session.commit()
             return redirect(url_for('projects'))
     else:
         result = db.session.query(Project).all()
         return render_template('upload.html', projectList = result)
+
+@app.route('/display/<filename>')
+def display_image(filename):
+	return redirect(url_for('static', filename='upload/' + filename), code=301)
