@@ -22,21 +22,19 @@
     
     <div class="p-16">
     </div>
-    <div class="">
+    <div class="break-words text-justify">
         {%if project_image_0 %}
-            <h3>Image 1</h3>
-            <img id="img_0" src="{{ url_for('display_image', filename=project_image_1) }}">
-            <p class="text-justify">{{project_image_0}}</p>
+            <img id="img_0" src="{{ url_for('display_image', filename=project_image_0) }}">
+            <!-- <p class="">{{project_image_0}}</p> -->
         {% endif %}
         <p> {{ short_desc }} </p>
     </div>
 
     <br>
-    <div class="mt-32">
+    <div class="mt-32 break-words text-justify">
         {%if project_image_1 %}
-            <h3>Image 2</h3>
-            <img id="img_1" src="{{ url_for('display_image', filename=project_image_0) }}">
-            <p class= "text-justify" >{{project_image_1}}</p>
+            <img id="img_1" src="{{ url_for('display_image', filename=project_image_1) }}">
+            <!-- <p class= "" >{{project_image_1}}</p> -->
         {% endif %}
         <p> {{ long_desc }} </p>
     </div>

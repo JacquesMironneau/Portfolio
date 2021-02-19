@@ -44,7 +44,7 @@
     let cur_file = ""
     {% for project in projectList %}
 
-        short_desc = '{{ project.short_desc}}'
+        short_desc = "{{ project.short_desc }}"
 
         project_files = []
         {% for file in project.attached_files %}
@@ -80,7 +80,8 @@
         description.innerHTML =desc[int_index]
 
         const img = document.querySelector("#img")
-        img.src= "{{ url_for('display_image', filename='me_true_irl.jpg') }}"
+        console.log(files[int_index][1])
+        img.src= "{{ url_for('display_image', filename=projectList[0].attached_files[0].file_url) }}"
     }
 
     document.querySelectorAll('.projectTitle').forEach(item => {

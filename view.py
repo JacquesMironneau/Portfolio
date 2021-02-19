@@ -67,7 +67,11 @@ def add():
         # Add in db
         if not request.form['name']:
             return redirect(url_for('add'))
-        project = Project(request.form['name'], request.form['short_desc'], request.form['long_desc'])
+
+        print(request.form['short_desc'])
+        for k in request.form['short_desc']:
+            print(k)
+        project = Project(request.form['name'], request.form['short_desc'].replace("\n", ''), request.form['long_desc'].replace("\n", ''))
         db.session.add(project)
         db.session.commit()
         return redirect(url_for('projects'))

@@ -13,7 +13,7 @@ db.session.commit()
 
 print('Project database successfully dumped')
 
-dir = 'upload'
+dir = 'static/upload/'
 
 if os.path.exists(dir):
     for file in os.listdir(dir):
@@ -22,3 +22,4 @@ if os.path.exists(dir):
     print('Images removed')
 else:
     os.makedirs(dir)
+    print(dir, " created")
