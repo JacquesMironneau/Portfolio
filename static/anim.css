@@ -1,53 +1,36 @@
-/* Google Fonts */
-@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
-
-/* Global */
-html {
-      min-height: 100%;
-      overflow: hidden;
+#to-animate {
+    border-right: solid 3px rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-body {
-      height: calc(100vh - 8em);
-      padding: 4em;
-      color: rgba(255, 255, 255, 0.75);
-      font-family: 'Anonymous Pro', monospace;
-      background-color: rgb(25, 25, 25);
+#to-animate {
+    animation: animated-text 0.5s steps(7) 1.5s 1 normal both,
+    animated-cursor 800ms steps(7) infinite;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
 }
 
-.line {
-      position: relative;
-      top: 50%;
-      width: 16em;
-      margin: 0 auto;
-      border-right: 2px solid rgba(255, 255, 255, 0.75);
-      font-size: 180%;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;transform: translateY(-50%);
+#cmd {
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    visibility: hidden;
+    animation: 0.1s display-cmd-result;
+    animation-delay: 2.1s;
+    animation-fill-mode: forwards;
+}
+@keyframes animated-text {
+    from {width:40px;}
+    to {width: 130px;}
 }
 
-/*Animation*/
-
-.anim-typewriter {
-      animation: typewriter 4s steps(40) 1s 1 normal both,
-      blinkTextCursor 500ms steps(40) infinite normal;
+@keyframes animated-cursor {
+    from{border-right-color: rgba(255, 255, 255, 0.75);}
+    to{border-right-color: transparent;}
 }
 
-@keyframes typewriter {
-      from {
-            width: 0;
-      }
-      to {
-            width: 16em;
-      }
-}
-
-@keyframes blinkTextCursor {
-      from {
-            border-right-color: rgba(255, 255, 255, 0.75);
-      }
-      to {
-            border-right-color: transparent;
-      }
+@keyframes display-cmd-result {
+    from {
+        visibility: hidden;
+    } to {
+        visibility: visible;
+    }
 }

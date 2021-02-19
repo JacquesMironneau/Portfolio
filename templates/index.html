@@ -2,7 +2,14 @@
 
 {% block title %} Portfolio {% endblock %}
 
+{%block customHead %} 
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='anim.css') }}">
+
+{% endblock %}
+
 {% block content %}
+
+
 
 <!-- https://avatars.githubusercontent.com/u/42646590?s=460&u=787b5252e1c128be865794dba1e80ee5b3488634&v=4 -->
 <!-- https://avatars.githubusercontent.com/u/34798699?s=460&u=d7b3c05d7858d26b9a2a4d6e627296dd0dc28a1e&v=4 -->
@@ -46,61 +53,66 @@
         </div>  
     </section>
     <aside id="terminal" class="profile w-2/3 h-5/6 text-white text-xl top-24 mt-16 rounded-lg  mr-48 pt-8 px-8 break-words bg-gray-700">
-        <label for="prompt" class="font-bold">~/ $ mefetch</label>
-        <input name="prompt" type="text" class="cmd bg-gray-700 hover:border-none focus:outline-none text-white" >
-        <div id="profile-picture" class="mefetch-picture"></div>
-        <div id="mefetch" class="font-mono ml-4 w-5/6 ">
-            <div class="mefetch-text mt-4">
+        <!-- <label for="prompt" class="font-bold">~/ $ </label> -->
+        <!-- <input name="prompt" type="text" class="cmd bg-gray-700 hover:border-none focus:outline-none text-white" > -->
+        <p class="font-bold" id="to-animate">~/ $ mefetch</p>
+        <div id="cmd">
 
-                <div class="mefetch-introduction grid grid-cols-3 gap-0">
-
-                    <div class="mefetch-image w-48 col-span-1">
-                        <img class="rounded-lg" src="https://avatars.githubusercontent.com/u/34798699?s=460&u=d7b3c05d7858d26b9a2a4d6e627296dd0dc28a1e&v=4" alt="" srcset="">
+            <div id="profile-picture" class="mefetch-picture"></div>
+            <div id="mefetch" class="font-mono ml-4 w-5/6 ">
+                <div class="mefetch-text mt-4">
+    
+                    <div class="mefetch-introduction grid grid-cols-3 gap-0">
+    
+                        <div class="mefetch-image w-48 col-span-1">
+                            <img class="rounded-lg" src="https://avatars.githubusercontent.com/u/34798699?s=460&u=d7b3c05d7858d26b9a2a4d6e627296dd0dc28a1e&v=4" alt="" srcset="">
+                        </div>
+    
+                        <div class="mefetch-text-info whitespace-normal col-span-2">
+                            <p>Name: <span class="text-gray-400">Jacques Mironneau</span></p>
+                            <p>Age: <span class="text-gray-400">20</span></p>
+                            
+                            <p>Languages: 
+                        <div class="ml-8">
+                                    <span class="text-gray-400">{ French, English, Italian}</span></p>
+                        </div>
+                            <p>Other: 
+                        <div class=" ml-8">
+    
+                                    <span class="text-gray-400">{ Driving licence, PSC1 }</span>
+                        </div>
+                        </p>
+                        </div>
                     </div>
-
-                    <div class="mefetch-text-info whitespace-normal col-span-2">
-                        <p>Name: <span class="text-gray-400">Jacques Mironneau</span></p>
-                        <p>Age: <span class="text-gray-400">20</span></p>
-                        
-                        <p>Languages: 
-                    <div class="ml-8">
-                                <span class="text-gray-400">{ French, English, Italian}</span></p>
-                    </div>
-                        <p>Other: 
-                    <div class=" ml-8">
-
-                                <span class="text-gray-400">{ Driving licence, PSC1 }</span>
+                   
+                    <br>
+    
+                    <p>Degree:
+                        <br>
+                        <div class="degrees ml-8 mb-4">
+                            <span class="text-gray-400">{ 2 year CS degree }</span></p>
+    
+                        </div>
+                    <p>Skills and interests: 
+                        <br>
+                        <div class="skills ml-8 mb-4">
+                            <span class="text-gray-400">{ OOP, OOP, OOP, OOP }</span>
+                        </div>
+                    </p>
+                    <p>Hobbies: 
+                        <br>
+                        <div class="hobbies ml-8">
+                            <span class="text-gray-400">{ OOP, OOP, OOP, OOP }</span>
                     </div>
                     </p>
-                    </div>
+    
                 </div>
                
-                <br>
-
-                <p>Degree:
-                    <br>
-                    <div class="degrees ml-8 mb-4">
-                        <span class="text-gray-400">{ 2 year CS degree }</span></p>
-
-                    </div>
-                <p>Skills and interests: 
-                    <br>
-                    <div class="skills ml-8 mb-4">
-                        <span class="text-gray-400">{ OOP, OOP, OOP, OOP }</span>
-                    </div>
-                </p>
-                <p>Hobbies: 
-                    <br>
-                    <div class="hobbies ml-8">
-                        <span class="text-gray-400">{ OOP, OOP, OOP, OOP }</span>
-                </div>
-                </p>
-
+                    
+                    
             </div>
-           
-                
-                
         </div>
+      
     </aside> 
 </div>
 
