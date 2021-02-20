@@ -16,7 +16,9 @@
 
     
     <div class="content container mx-auto flex w-full h-full py-32 space-x-4">
-    <section class="infos w-1/2">
+    <div class="w-full rounded-3xl flex flex-row transform shadow-lg bg-gradient-to-br from-green-400 to-cyan-500 rotate-1 z-0">
+
+    <section class="infos block w-1/2 z-10">
         <span id="name" class="text-black text-5xl font-black block mt-36 -ml-24 text-gray-800">Jacques Mironneau</span>
         <span class="underline block mt-6 h-4 rounded-lg w-2/3 bg-gradient-to-r from-yellow-500 to-pink-500 via-red-500 -ml-8"></span>
         <div class="arrow animate-pulse animate-bounce">
@@ -25,34 +27,36 @@
         </div>
         <div id="links" class="w-5/6 flex container space-x-10 mt-24 -ml-36">
             <div id="github-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-10 text-black bg-white overflow-hidden font-black text-4xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">GIT</div>
-                <div class="button-bottom h-1/3 w-full bg-white rounded-b-lg block z-0 relative text-center transition duration-200 ease-in-out font-black text-xl text-gray-800">
+                <div class="button-top h-24 w-full block z-30 text-black bg-white overflow-hidden font-black text-4xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">GIT</div>
+                <div class="button-bottom h-1/3 w-full bg-white rounded-b-lg block z-20 relative text-center transition duration-200 ease-in-out font-black text-xl text-gray-800">
                     <a href="#git">github.com</a>
                 </div>
             </div>
             <div id="linkedin-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-10 text-black bg-white overflow-hidden font-black text-4xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">LN</div>
-                <div class="button-bottom h-1/3 w-full bg-white rounded-b-lg block z-0 relative text-center transition duration-200 ease-in-out font-black text-xl text-gray-800">
+                <div class="button-top h-24 w-full block z-30 text-black bg-white overflow-hidden font-black text-4xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">LN</div>
+                <div class="button-bottom h-1/3 w-full bg-white rounded-b-lg block z-20 relative text-center transition duration-200 ease-in-out font-black text-xl text-gray-800">
                     <a href="#linkedin">linkedin.com</a>
                 </div>
             </div>
             <div id="aboutme-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-10 text-black bg-white overflow-hidden font-black text-4xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">ME</div>
-                <div class="button-bottom h-1/3 w-full bg-white rounded-b-lg block z-0 relative text-center transition duration-200 ease-in-out font-black text-xl text-gray-800">
+                <div class="button-top h-24 w-full block z-30 text-black bg-white overflow-hidden font-black text-4xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">ME</div>
+                <div class="button-bottom h-1/3 w-full bg-white rounded-b-lg block z-20 relative text-center transition duration-200 ease-in-out font-black text-xl text-gray-800">
                     <a href="#me">aboutme</a>
                 </div>
             </div>
         </div>
         <div id="projects" class="w-5/6 flex container space-x-10 mt-24 -ml-36">
             <div id="project-button" class="button h-1/2 w-1/2 container group relative rounded-lg border-blue-500">
-                <div class="button-top h-24 w-full block z-10 text-black bg-white overflow-hidden font-black text-4xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">View More</div>
-                <div class="button-bottom h-1/3 w-full bg-white rounded-b-lg block z-0 relative text-center transition duration-200 ease-in-out font-black text-2xl text-gray-800">
+                <div class="button-top h-24 w-full block z-30 text-black bg-white overflow-hidden font-black text-4xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">View More</div>
+                <div class="button-bottom h-1/3 w-full bg-white rounded-b-lg block z-20 relative text-center transition duration-200 ease-in-out font-black text-2xl text-gray-800">
                     <a href="/projects">My projects</a>
                 </div>
             </div>
         </div>  
     </section>
-    <aside id="terminal" class="profile w-2/3 h-5/6 text-white text-xl top-24 mt-16 rounded-lg  mr-48 pt-8 px-8 break-words bg-gray-700">
+        
+
+    <aside id="terminal" class="profile w-2/3 h-5/6 text-white block text-xl top-24 mt-16 rounded-lg  mr-48 pt-8 px-8 break-words bg-gray-700 z-10">
         <!-- <label for="prompt" class="font-bold">~/ $ </label> -->
         <!-- <input name="prompt" type="text" class="cmd bg-gray-700 hover:border-none focus:outline-none text-white" > -->
         <p class="font-bold" id="to-animate">~/ $ mefetch</p>
@@ -115,6 +119,8 @@
       
     </aside> 
 </div>
+</div>
+
 
 
 {% endblock %}
