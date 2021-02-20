@@ -17,6 +17,8 @@
     animation-delay: 2.1s;
     animation-fill-mode: forwards;
 }
+
+
 @keyframes animated-text {
     from {width:40px;}
     to {width: 130px;}
