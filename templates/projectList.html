@@ -4,90 +4,56 @@
 {% block title %} Project list {% endblock %}
 
 {% block content %}
-<div class="content grid grid-cols-2 gap-0 my-32 font-mono">
-    <!-- <h1>My projects</h1> -->
-    <div class="projectList justify-self-center my-64 ">
-        {% if projectList %}
-            {% for project in projectList %}
-                <a class="projectTitle   text-gray-500 text-6xl hover:text-gray-800 transition ease-in duration-200" href="{{ url_for('project', id=project.id)}}">{{ project.project_name }}</a>
-                <br/>
-                <br>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div class="desc text-white text-xl  my-16 rounded-lg mr-48 pb-32 pt-8 pl-8 pr-8 break-words bg-gray-700">
-        <p id="prompt" class="text-white"></p>
-        <img id="img">
 
-        <p id="text" class="text-gray-300"></p>
-        
-<!-- transition ease-in duration-200 -->
-    </div>
+<div class="card-container">
 
-    <style>
-        #img {
-            float: left;
-            width: 12vw;
-            margin: 1.2em;
-        }
-    </style>
+
+{% if projectList %}
+<script>
+    console.log("ProjectList == ok")
+</script>
+{% for project in projectList %}
+<div class="card">
+    <div class="circle"></div>
+    <div class="content">
+        <h2></h2>
+        <p>
+
+        </p>
+        <a href="#"> More details</a>
+    </div>
+    <img src="" alt="pespi">
 </div>
+{% endfor %}
 <script>
 
-    let desc = []
-    let files = []
-    let names = []
-    let short_desc = ""
-    let attached_files = ""
-    let project_name = ""
-    let project_files = []
-    let cur_file = ""
+    // let desc = []
+    // let files = []
+    // let names = []
+    // let short_desc = ""
+    // let attached_files = ""
+    // let project_name = ""
+    // let project_files = []
+    // let cur_file = ""
+
+    let cards = document.querySelectorAll('.card')
+    let card_index = 0
+
     {% for project in projectList %}
-
-        short_desc = "{{ project.short_desc }}"
-
-        project_files = []
-        {% for file in project.attached_files %}
-            cur_file = '{{ file.file_url}}'
-            console.log(cur_file)
-            project_files.push(cur_file)
-        {% endfor %}
-
-        project_name = '{{ project.project_name }}'
-        desc.push(short_desc)
-        files.push(project_files)
-        names.push(project_name)
+        cards[card_index].children[1].children[0].innerHTML = '{{ project.project_name }}'
+        cards[card_index].children[1].children[1].innerHTML = '{{ project.short_desc }}'
+        cards[card_index].children[2].src ="{{ url_for('static',filename='can-real-sugar-reg.png') }}"
+        cards[card_index].children[1].children[2].href = `/project/${card_index+1}`
+        cards[card_index].children[2].alt = '{{ project.project_name }}'
+        card_index++
     {% endfor %}
 
-
-    console.log(desc)
-    console.log(names)
-    console.log(files)
-
-    const hover = (event) => {
-
-
-        let index = event.target.pathname.slice(-1)
-        let int_index = Number(index)
-        int_index--
-
-        const prompt = document.querySelector('#prompt')
-        console.log(prompt.innerHTML)
-        prompt.innerHTML = "~/projects/" + names[int_index].toLowerCase().replace(/ /g,"_")  + " $"
-
-
-        const description = document.querySelector("#text")
-        description.innerHTML =desc[int_index]
-
-        const img = document.querySelector("#img")
-        console.log(files[int_index][1])
-        img.src= "{{ url_for('display_image', filename=projectList[0].attached_files[0].file_url) }}"
-    }
-
-    document.querySelectorAll('.projectTitle').forEach(item => {
-        item.addEventListener('mouseover', hover)
-    })
-
 </script>
+</div>
+
+{% else %}
+<h1 class="error">Oh there's nothing to watch here, an internal error occured :c</h1>
+{% endif %}
 
 {% endblock %}
+

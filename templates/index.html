@@ -17,41 +17,41 @@
 
 
     
-    <div class="content container mx-auto flex w-full h-full py-32 space-x-4">
+    <div class="content container mx-auto flex w-full h-full py-32 space-x-4 mb-32">
         <!-- <div class="w-full block rounded-3xl transform shadow-lg bg-gradient-to-br from-green-400 to-blue-500 rotate-1 z-0"></div> -->
-    <div class="w-full  flex flex-row ">
+    <div class="w-full  flex 2xl:flex-row flex-col">
 
-    <section class="infos block w-1/2 z-10 bg-transparent h-2/3">
-        <span id="name" class="text-black text-8xl font-black block mt-8 text-gray-800"><span class="text-gray-600">Jacques</span> Mironneau</span>
-        <span class="underline block mt-6 h-4 rounded-lg w-2/3 -ml-8 bg-yellow-300" ></span>
+    <section class="infos block 2xl:w-1/3 xl:w-full z-10 bg-transparent 2xl:h-2/3 xl:h-full ">
+        <span id="name" class="text-black 2xl:text-8xl xl:text-6xl text-4xl font-mono font-black block mt-8 text-gray-600"><span class="text-gray-800 font-mono">Jacques</span> Mironneau</span>
+        <span class="underline block mt-6 2xl:h-4 xl:h-2 rounded-lg 2xl:w-2/3 xl:w-1/3 -ml-8 bg-yellow-300" ></span>
         <!-- <div class="arrow animate-pulse animate-bounce">
             <span id="top"></span>
             <span id="bottom"></span>
         </div> -->
         <div id="links" class="w-5/6 flex container space-x-10 mt-24 bg-transparent rounded-lg">
             <div id="github-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-30 text-gray-800 block overflow-hidden font-black text-6xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">Git</div>
-                <div class="button-bottom h-1/3 w-full bg-transparent rounded-b-lg block z-20 relative transition duration-200 ease-in-out text-center text-transparent font-black text-xl group-hover:text-gray-800">
+                <div class="button-top h-24 w-full block z-30 text-gray-800 block overflow-hidden font-black text-center pt-6 relative transition duration-200 ease-in-out 2xl:text-6xl xl:text-5xl">Git</div>
+                <div class="button-bottom 2xl:h-1/3 w-full bg-transparent rounded-b-lg block z-20 relative transition duration-200 ease-in-out text-center text-transparent font-black text-xl group-hover:text-gray-800">
                     <a href="https://github.com/JacquesMironneau">JacquesMironneau</a>
                 </div>
             </div>
             <div id="linkedin-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-30 text-gray-800  bg-transparent overflow-hidden font-black text-6xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">Ln</div>
+                <div class="button-top h-24 w-full block z-30 text-gray-800  bg-transparent overflow-hidden font-black text-center pt-6 relative transition duration-200 ease-in-out font-black 2xl:text-6xl xl:text-5xl">Ln</div>
                 <div class="button-bottom h-1/3 w-full bg-transparent rounded-b-lg block z-20 relative transition duration-200 ease-in-out text-center font-black text-xl text-transparent group-hover:text-gray-800">
                     <a href="https://www.linkedin.com/in/jacques-mironneau/">jacques-mironneau</a>
                 </div>
             </div>
             <div id="aboutme-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-30 text-gray-800 bg-transparent overflow-hidden font-black text-6xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">Cv</div>
+                <div class="button-top h-24 w-full block z-30 text-gray-800 bg-transparent overflow-hidden font-black text-6xl text-center pt-6 relative transition duration-200 ease-in-out font-black 2xl:text-6xl xl:text-5xl">cv</div>
                 <div class="button-bottom h-1/3 w-full bg-transparent rounded-b-lg block z-20 relative transition duration-200 ease-in-out text-center font-black text-xl text-transparent group-hover:text-gray-800">
                     <a href="#me">aboutme</a>
                 </div>
             </div>
         </div>
-        <div id="projects" class="w-5/6 flex container space-x-10 mt-24">
+        <div id="projects" class="xl:w-full xl:pl-64 2xl:pl-4 flex container space-x-10 2xl:mt-24 xl:mt-12">
             <div id="project-button" class="button h-1/2 w-full container group relative rounded-lg border-blue-500">
-                <div class="button-top h-24 w-5/6 block z-30 text-gray-800 bg-transparent overflow-hidden font-black text-6xl text-center pt-6 relative transition duration-200 ease-in-out font-black text-xl">See my work</div>
-                <div class="button-bottom h-1/3 w-5/6 bg-transparent rounded-b-lg block z-20 relative text-center transition duration-200 ease-in-out font-black text-4xl text-transparent group-hover:text-gray-800">
+                <div class="button-top h-24 block z-30 text-gray-800 bg-transparent overflow-hidden font-black 2xl:text-5xl xl:text-4xl  text-center  relative transition duration-200 ease-in-out font-black font-mono">See my projects</div>
+                <div class="button-bottom h-1/3 2xl:w-full xl:w-1/2 bg-transparent rounded-b-lg block z-20 relative text-center transition duration-200 ease-in-out font-black text-4xl text-transparent group-hover:text-gray-800">
                     <a href="/projects">My projects</a>
                 </div>
             </div>
@@ -59,7 +59,7 @@
     </section>
         
 
-    <aside id="terminal" class="profile w-2/3 h-5/6 text-white block text-xl top-24 mt-16 rounded-lg mr-20 pt-8 px-8 break-words bg-gray-700 z-10">
+    <aside id="terminal" class="profile 2xl:w-2/3 2xl:h-5/6 xl:w-5/6 xl:h-full xl:pb-32  xl:mb-64  text-white block text-xl top-24 mt-16 rounded-lg mr-20 pt-8 px-8 xl:ml-24 ml-12 break-words bg-gray-700 z-10">
         <!-- <label for="prompt" class="font-bold">~/ $ </label> -->
         <!-- <input name="prompt" type="text" class="cmd bg-gray-700 hover:border-none focus:outline-none text-white" > -->
         <p class="font-bold" id="to-animate">~/ $ mefetch</p>

@@ -1,0 +1,224 @@
+<!-- 
+    //     short_desc = "{{ project.short_desc }}"
+
+    //     project_files = []
+    //     {% for file in project.attached_files %}
+    //         cur_file = '{{ file.file_url}}'
+    //         console.log(cur_file)
+    //         project_files.push(cur_file)
+    //     {% endfor %}
+
+    //     project_name = '{{ project.project_name }}'
+    //     desc.push(short_desc)
+    //     files.push(project_files)
+    //     names.push(project_name)
+    // {% endfor %}
+
+
+    // console.log(desc)
+    // console.log(names)
+    // console.log(files)
+
+    // const hover = (event) => {
+
+
+    //     let index = event.target.pathname.slice(-1)
+    //     let int_index = Number(index)
+    //     int_index--
+
+    //     const description = document.querySelector("#text")
+    //     description.innerHTML =desc[int_index]
+
+    //     const img = document.querySelector("#img")
+    //     console.log(files[int_index][1])
+    //     img.src= "{{ url_for('display_image', filename=projectList[0].attached_files[0].file_url) }}" v1
+    //     cards[card_index].children[2].src ="{{ url_for('static',filename='can-real-sugar-reg.png') }}" vpepsi
+            // aled cards[card_index].children[2].src ="{{ url_for('display_image', filename=project.attached_files[0].file_url) }}" v3
+    // }
+
+    // document.querySelectorAll('.projectTitle').forEach(item => {
+    //     item.addEventListener('mouseover', hover)
+    // })
+ -->
+
+
+     <!-- <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+
+    <div class="card">
+        <div class="circle"></div>
+        <div class="content">
+            <h2>Pepsi cola</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Itaque facere in minus voluptate? Veritatis est sed omnis, 
+                dolorem nostrum temporibus.</p>
+                <a href="#"> More details</a>
+        </div>
+        <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
+    </div>
+</div> -->
