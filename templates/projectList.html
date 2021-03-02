@@ -32,25 +32,17 @@
 <script>
     let cards = document.querySelectorAll('.card')
     let card_index = 0
-    let file_index = 0
-
-    // iterate through projects 
+        
     {% for project in projectList %}
-        file_index = 0
-        // attach the first file
-        // this file corresponds to the image thumbnail and background
-        {% for file in project.attached_files %}
-            if (file_index == 0) cards[card_index].children[2].src = "{{ url_for('static', filename='upload/'+file.file_url) }}"
-            file_index++
-        {% endfor %}
-
-        // init the cards
-        cards[card_index].children[1].children[0].innerHTML = '{{ project.project_name }}'
-        cards[card_index].children[1].children[1].innerHTML = '{{ project.short_desc }}'
-        cards[card_index].children[1].children[2].href = `/project/${card_index+1}`
-        cards[card_index].children[2].alt = '{{ project.project_name }}'
-    
+        let card_content = cards[card_index].children[1] // .card .content
+        let card_img = cards[card_index].children[2] //. card img
+        card_content.children[0].innerHTML = '{{ project.project_name }}' // .card .content h2
+        card_content.children[1].innerHTML = '{{ project.short_desc }}' // .card .content p
+        card_content.children[2].href = '{{ project.project_url }}' // .card .content a
+        card_img.src = '{{ project.project_thumbnail }}' // .card img src
+        card_img.alt = '{{ project.project_name }}' // .card img src
         card_index++
+
     {% endfor %}
 
 </script>
