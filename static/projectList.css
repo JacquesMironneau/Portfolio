@@ -5,7 +5,6 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
 .card-container {
     width: 100%;
     display: grid;
@@ -15,7 +14,6 @@
     align-items: center;
     min-height: 100vh;
 }
-
 .card {
     position: relative;
     width: 600px;
@@ -27,7 +25,6 @@
     transition: 0.5s;
     margin: 2em;
 }
-
 .card .circle
 {
     position: absolute;
@@ -38,7 +35,6 @@
     border-radius: 20px;
     overflow: hidden;
 }
-
 .card .circle::before {
     content: '';
     position: absolute;
@@ -49,14 +45,11 @@
     background: #fbbf24;
     clip-path: circle(120px at center);
     transition: 0.5s;
-
 }
-
 .card:hover .circle::before {
-    background: #777;
+    background: #223344;
     clip-path: circle(400px at center)
 }
-
 .card img {
     position: absolute;
     top: 50%;
@@ -65,14 +58,16 @@
     height: 300px;
     pointer-events: none;
     transition: 0.5s;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 11rem;
+    object-fit: cover;
 }
-
 .card:hover img {
     left: 72%;
     height: 500px;
-
+    width: 16rem;
 }
-
 .card .content {
     position: relative;
     width: 50%;
@@ -82,13 +77,11 @@
     opacity: 0;
     visibility: hidden;
 }
-
 .card:hover .content {
     left: 0;
     opacity: 1;
     visibility: visible;
 }
-
 .card .content h2 {
     color: #fff;
     text-transform: uppercase;
@@ -96,11 +89,9 @@
     line-height: 1em;
     margin-bottom: 5px;
 }
-
 .card .content p {
     color: #fff;
 }
-
 .card .content a {
     position: relative;
     color: #fff;
@@ -113,7 +104,6 @@
     text-decoration: none;
     font-weight: 700;
 }
-
 .error {
     font-weight: 900;
     align-content: center;

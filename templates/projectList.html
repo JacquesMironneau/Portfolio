@@ -22,29 +22,30 @@
         </p>
         <a href="#"> More details</a>
     </div>
-    <img src="" alt="pespi">
+    <img src="">
 </div>
 {% endfor %}
 <script>
-
-    // let desc = []
-    // let files = []
-    // let names = []
-    // let short_desc = ""
-    // let attached_files = ""
-    // let project_name = ""
-    // let project_files = []
-    // let cur_file = ""
-
     let cards = document.querySelectorAll('.card')
     let card_index = 0
+    let file_index = 0
 
+    // iterate through projects 
     {% for project in projectList %}
+        file_index = 0
+        // attach the first file
+        // this file corresponds to the image thumbnail and background
+        {% for file in project.attached_files %}
+            if (file_index == 0) cards[card_index].children[2].src = "{{ url_for('static', filename='upload/'+file.file_url) }}"
+            file_index++
+        {% endfor %}
+
+        // init the cards
         cards[card_index].children[1].children[0].innerHTML = '{{ project.project_name }}'
         cards[card_index].children[1].children[1].innerHTML = '{{ project.short_desc }}'
-        cards[card_index].children[2].src ="{{ url_for('static',filename='can-real-sugar-reg.png') }}"
         cards[card_index].children[1].children[2].href = `/project/${card_index+1}`
         cards[card_index].children[2].alt = '{{ project.project_name }}'
+    
         card_index++
     {% endfor %}
 
