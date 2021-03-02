@@ -24,15 +24,15 @@ flask run
 ### Routes:
 
 The project is by default launched on localhost on port 5000.  
-Main page: (Information about the person)  
+**Main page: (Information about the person)**  
 `/`  
-To upload images, gif, video to a project:  
+**To upload images, gif, video to a project:**  
 `/upload/`  
-To add a project:  
+**To add a project:**  
 `/add/`  
-To display the existing projects:  
+**To display the existing projects:**  
 `/projects/`  
-Details on a given project:  
+**Details on a given project:**  
 `/project/[n]`  
 n is here the project id  
 
