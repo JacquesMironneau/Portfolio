@@ -77,3 +77,7 @@ A project represents the unit of the application, a project has several ressourc
 - [ ] Style project page
 - [ ] Main page customization
 - [ ] Mobile responsive
+- [ ] Create admin page (merging add.html and upload.html could be a great start)
+- [ ] Secure Authentification
+- [ ] Optimise css :exclamation:
+- [ ] Optimise js :exclamation:
