@@ -3,10 +3,14 @@
 
 {% block title %} Project list {% endblock %}
 
+{% block customHead %}
+<link rel="stylesheet" href="{{ url_for('static', filename='projectList.css') }}">
+{% endblock %}
+
 {% block content %}
 
+<h2 >Discover my projects</h2>
 <div class="card-container">
-
 
 {% if projectList %}
 <script>

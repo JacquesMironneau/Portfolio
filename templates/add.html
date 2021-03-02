@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block title %}Add a project{% endblock %}
-
+{% block customHead %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='add.css') }}">
+{% endblock %}
 {% block content %} 
 <h2>Add a project</h2>
 

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 .button .button-top:before {
     content: "";
@@ -71,12 +72,4 @@
 .arrow #bottom {
     transform: rotate(-45deg);
     top:6px;    
-}
-
-body {
-    /* /https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclickwallpapers.com%2F1080p%2Fwhite-abstract-wallpaper-widescreen-On-Wallpaper-1080p-HD.jpg&f=1&nofb=1 */
-    /* background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fideasphere.com%2Fwp-content%2Fuploads%2F2016%2F08%2FSavin-NY-Website-Background-Web-1.jpg&f=1&nofb=1'); */
-    background-image: url(http://hdwpro.com/wp-content/uploads/2016/06/White-Gray-Wallpaper.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
 }

@@ -222,3 +222,82 @@
         <img src="{{ url_for('static',filename='can-real-sugar-reg.png') }}" alt="pespi">
     </div>
 </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="absolute inset-0 container z-index-30 w-2/3 h-full m-auto p-8">
+    
+    <h2 class="object-none object-left-bottom font-mono text-7xl text-center mt-16"> {{ project_name }} </h2>
+    
+    <div class="p-16">
+    </div>
+    <div class="break-words text-justify">
+        {%if project_image_0 %}
+            <img id="img_0" src="{{ url_for('display_image', filename=project_image_0) }}">
+            <!-- <p class="">{{project_image_0}}</p> -->
+        {% endif %}
+        <p> {{ short_desc }} </p>
+    </div>
+
+    <br>
+    <div class="mt-32 break-words text-justify">
+        {%if project_image_1 %}
+            <img id="img_1" src="{{ url_for('display_image', filename=project_image_1) }}">
+            <!-- <p class= "" >{{project_image_1}}</p> -->
+        {% endif %}
+        <p> {{ long_desc }} </p>
+    </div>
+</div>
+
+ 
+
+    <style>
+        img {
+            width: 25vw;
+            margin: 1.2em;
+
+        }
+        #img_1 {
+            float: left;
+            /*height: 20vh;*/
+        }
+
+        #img_0 {
+            float:right;
+        }
+    </style>
+    
+
+    <!-- {%if project_image_0 %}
+    <h3>Image 1</h3>
+    <p>{{project_image_0}}</p>
+    {% endif %}
+
+    {%if project_image_1 %}
+    <h3>Image 2</h3>
+    <p>{{project_image_1}}</p>
+    {% endif %} -->
+
+    {%if project_image_2 %}
+    <h3>Image 3</h3>
+    <p>{{project_image_2}}</p>
+    {% endif %}
+
+    <!--
+
+    {%if project_image_N  %}
+    <h3>Image N+1</h3>
+    <p>{{project_image_N}}</p>
+    {% endif %}
+    -->
+</div> 

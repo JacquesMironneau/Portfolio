@@ -1,29 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
 .card-container {
-    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     min-height: 100vh;
+    margin-right: auto;
+    margin-left: auto;
+    width: 75%;
+    margin-top: 5em;
 }
+
+
+h2{
+    background: #223344;
+    color : white;
+    text-align: center;
+    font-family: 'Poppins',sans-serif;
+    font-size: 3em;
+    font-weight: bold;    
+}
+
+@media (min-width: 1280px)
+{
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }    
+}
+@media (min-width: 1536px)
+{
+    .card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }    
+}
+
 .card {
     position: relative;
-    width: 600px;
-    height: 350px;
+    width: 550px;
+    height: 300px;
     border-radius: 20px;
     display: flex;
     align-items: center;
     border-radius: 20px;
     transition: 0.5s;
-    margin: 2em;
+    margin-bottom: 8rem;
 }
 .card .circle
 {
@@ -42,7 +67,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #fbbf24;
+    background: #49575f;
     clip-path: circle(120px at center);
     transition: 0.5s;
 }
@@ -65,7 +90,7 @@
 }
 .card:hover img {
     left: 72%;
-    height: 500px;
+    height: 450px;
     width: 16rem;
 }
 .card .content {
@@ -96,9 +121,9 @@
     position: relative;
     color: #fff;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     background: #fff;
-    color: black;
+    color: #223344;
     margin-top: 10px;
     display: inline-block;
     text-decoration: none;
