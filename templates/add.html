@@ -7,12 +7,15 @@
 {% block content %} 
 <h2>Add a project</h2>
 
-<form id="add-project" action = "" method = "post">
-    <input type="text" name="name" placeholder = "Project name"/><br>
+<form id="add-project" action = "" method = "post" enctype="multipart/form-data">
+    <input type="text" name="project_name" placeholder = "Project name"/><br>
 
-    <textarea name="short_desc" placeholder="Short description"></textarea><br>
+    <input type="text" name="project_url" placeholder = "project url"/><br>
 
-    <textarea id="long-desc" name="long_desc" placeholder="Long description"></textarea><br>
+    <textarea name="project_desc" placeholder="Short description"></textarea><br>
+
+    <label for = "file">File</label><br>
+    <input type=file name="project_thumbnail"> <br>
 
     <!-- TODO: merge with add/upload files -->
     

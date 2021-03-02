@@ -21,14 +21,14 @@ class Project(db.Model):
     project_url = db.Column(db.String(300), nullable=False)
     project_thumbnail = db.Column(db.String(300), nullable=True) # url of the thumbnail
 
-    def __init__(self, project_name, desc, project_url, project_thumbnail):
+    def __init__(self, project_name, project_desc, project_url, project_thumbnail):
         self.project_name = project_name
-        self.desc = desc
+        self.project_desc = project_desc
         self.project_url = project_url
         self.project_thumbnail = project_thumbnail
     
     def __str__(self):
-        return f"project_id: {self.id}\n   name: {self.project_name}\n    description: {self.desc}\n    project_url: {self.project_url}\n   thumbnail_url: {self.project_thumbnail}"
+        return f"project_id: {self.id}\n   name: {self.project_name}\n    description: {self.project_desc}\n    project_url: {self.project_url}\n   thumbnail_url: {self.project_thumbnail}"
         
 # class Project_files(db.Model):
 #     """

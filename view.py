@@ -1,7 +1,7 @@
 from flask import Flask, render_template, abort, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from run import app, ALLOWED_EXTENSIONS
-from models import db, Project, Project_files
+from models import db, Project
 from werkzeug.utils import secure_filename
 import os
 """
@@ -49,9 +49,6 @@ def project(id = None):
         **other_images)
 
 
-@app.route('/about/')
-def about():
-    return 'The about page'
 
 #TODO protect with password
 @app.route('/add/', methods = ['GET', 'POST'])
@@ -65,13 +62,18 @@ def add():
         return render_template('add.html')
     else:
         # Add in db
-        if not request.form['name']:
+        if not request.form['project_name']:
             return redirect(url_for('add'))
 
-        print(request.form['short_desc'])
-        for k in request.form['short_desc']:
-            print(k)
-        project = Project(request.form['name'], request.form['short_desc'].replace("\n", ''), request.form['long_desc'].replace("\n", ''))
+        file = request.files['project_thumbnail']
+        if file.filename == '':
+            # handle no selected file
+            return 'no selected file'
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        project = Project(request.form['project_name'], request.form['project_desc'], request.form['project_url'], filename)
         db.session.add(project)
         db.session.commit()
         return redirect(url_for('projects'))

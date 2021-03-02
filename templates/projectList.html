@@ -32,14 +32,16 @@
 <script>
     let cards = document.querySelectorAll('.card')
     let card_index = 0
-        
+    let card_content = ""
+    let card_img = ""
+
     {% for project in projectList %}
-        let card_content = cards[card_index].children[1] // .card .content
-        let card_img = cards[card_index].children[2] //. card img
+        card_content = cards[card_index].children[1] // .card .content
+        card_img = cards[card_index].children[2] //. card img
         card_content.children[0].innerHTML = '{{ project.project_name }}' // .card .content h2
-        card_content.children[1].innerHTML = '{{ project.short_desc }}' // .card .content p
+        card_content.children[1].innerHTML = '{{ project.project_desc }}' // .card .content p
         card_content.children[2].href = '{{ project.project_url }}' // .card .content a
-        card_img.src = '{{ project.project_thumbnail }}' // .card img src
+        card_img.src = "{{ url_for('static', filename='upload/'+ project.project_thumbnail) }}"
         card_img.alt = '{{ project.project_name }}' // .card img src
         card_index++
 
