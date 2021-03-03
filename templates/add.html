@@ -2,7 +2,7 @@
 
 {% block title %}Add a project{% endblock %}
 {% block customHead %}
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='add.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='admin.css') }}">
 {% endblock %}
 {% block content %} 
 <h2>Add a project</h2>
@@ -21,38 +21,4 @@
     
     <input id="submit" type="submit" value="+" accesskey="Return"/>
  </form>
-
- <h2>Delete a project</h2>
- {% if projectList %}
-<form action = "" method = "post" enctype="multipart/form-data">
-    <label for = "file">File</label><br>
-    <input type=file name=file> <br>
-
-
-    <label for = "projects">Projet</label><br>
-
-    <select name="projects" id="projects">    
-        {% for project in projectList %}
-        <option value="{{ project.id }}">{{ project.project_name }}</option>
-        {% endfor %}
-    </select>
-    <input type = "submit" value = "Delete" />
- </form>
- {% else %}
-<span> No project found </span>
-
-{% endblock %}
-
-<script>
-    // window.onload =() => {
-    //     const form = document.getElementById('add-project');
-    //     const sub =document.getElementById('submit');
-
-    //     let form_fields = form.childNodes;
-    //      form_fields.forEach( (field) => {
-    //          if (!(field.nodeValue === "" )) sub.removeAttribute("disabled");
-    //      })
-    // }
-</script>
-
-<!-- TODO: merge this with upload.html -->
+ {% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Add a project{% endblock %}
+
+{% block customHead %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='admin.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h2>Delete a project</h2>
+
+{% if projectList %}
+<form action = "" method = "post" enctype="multipart/form-data">
+    <label for="delete-projects">Supprimer le Projet</label><br>
+
+    <select name="delete-project" id="delete-project" size=5>    
+        {% for project in projectList %}
+        <option value="{{ project.id }}">{{ project.project_name }}</option>
+        {% endfor %}
+    </select>
+    <input id="submit" type="submit" value ="Delete" />
+</form>
+{% else %}
+
+<span> No project found please <a href="{{ url_for('add')}}">add</a> one</span>
+
+
+{% endif %}
+
+{% endblock %}

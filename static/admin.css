@@ -47,3 +47,11 @@ form{
     color:white;
     font-size: 1.2em;
 }
+
+#delete-project{
+    margin-bottom: 3%;
+    font-weight: bold;
+    font-size:25px;
+    color : #223344;
+    border-radius: 0.5em;
+}
