@@ -23,7 +23,7 @@ def index():
 def projects():
     """
     Display every list
-    TODO: use the projectList.html to display every projects properly
+    TODO: use the orojectList.html to display every projects properly
     """
     result = db.session.query(Project).all()
     return render_template('projectList.html', projectList = result)
