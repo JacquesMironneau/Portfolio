@@ -73,9 +73,8 @@ A project represents the unit of the application, a project has several ressourc
 | is_background | true if the images must be displayed on background (see `/project/[n]`) | boolean         |
 
 ### TODO:  
-- [ ] Docker compose  :exclamation:
-- [ ] Style project page
-- [ ] Main page customization
+- [x] Docker compose  :exclamation:
+- [x] Main page customization
 - [ ] Mobile responsive
 - [ ] Create admin page (merging add.html and upload.html could be a great start)
 - [ ] Secure Authentification
