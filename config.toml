@@ -1,0 +1,9 @@
+[data]
+firstname="Jacques"
+lastname="Mironneau"
+age=20
+languages=["French", "English", "Italian"]
+other=[ "Driving licence", "PSC1"]
+degree=["2 year CS degree", "first year of MSc in computer science"]
+skills=["OOP", "Python", "Java", "C#"]
+hobbies=["Swimming", "Music", "Hackathon", "Video editing"]

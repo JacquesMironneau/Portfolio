@@ -46,7 +46,9 @@ a:hover  {
     color: #77bbdd;
 }
 
-
+#terminal {
+    height: 30em;
+}
 @media (min-width: 1536px)
 {
 }
