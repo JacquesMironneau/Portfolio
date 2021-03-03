@@ -9,7 +9,7 @@
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
+    min-height: 88vh;
     margin-right: auto;
     margin-left: auto;
     width: 75%;
@@ -18,8 +18,8 @@
 
 
 h2{
-    background: #223344;
-    color : white;
+    background: transparent;
+    color : #223344;
     text-align: center;
     font-family: 'Poppins',sans-serif;
     font-size: 3em;
@@ -113,6 +113,7 @@ h2{
     font-size: 2em;
     line-height: 1em;
     margin-bottom: 5px;
+    background: transparent;
 }
 .card .content p {
     color: #fff;

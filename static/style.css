@@ -1,75 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-.button .button-top:before {
-    content: "";
-    position: absolute;
-    height: 6px;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(to right, #FBBF24,#EF4444, #F472B6);
-    transform: scaleX(0);
-    visibility: hidden;
-    transition: all .25s cubic-bezier(1,.25,0,.75) 0s;
-    border-radius: 1.5em;
+.links {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-auto-flow: row;
+    grid-auto-rows: max-content;
 }
 
-.button:hover .button-top:before {
-    visibility: visible;
-    transform: scaleX(1);
+a {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: transparent;
+    color: #223344;
+    margin-top: 10px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 46pt;
+    align-content: center;
+    justify-content: center;
+    transition: 0.5s;
+    box-shadow: 10px 10px 40px #00000011
 }
 
-.button-bottom {
-    top: -40px;
-    border-bottom: #eee;
+a:hover  {
+    transform: scale(1.2);
+    color: #fff;
+    background: #223344;
+    box-shadow: -10px 10px 30px #00000011;
 }
 
-.button:hover .button-bottom {
-    transform: translateY(40px);
+#projects a {
+    font-size: 36pt;
 }
+
+#projects a:hover {
+    transform: scale(1.1);
+}
+
+#name {
+    font-family: 'Poppins', sans-serif;
+    color: #77bbdd;
+}
+
+
 @media (min-width: 1536px)
 {
-    
-    .button .button-top:before {
-        width: 100%;
-    }
 }
 @media (min-width: 1280px)
 {
-    .button .button-top:before {
-        width: 50%;
-        margin-left: 25%;
-    }
-    
-    .button-bottom {
-
-    }
-}
-
-.arrow {
-    position: absolute;
-    z-index: 5;
-    top:0;
-    left:0;
-    display: block;
-    top: 37vh;
-    left: 10vw  ;
-}
-.arrow  span {
-    width: 30px;
-    height: 7px;
-    margin: 5px;
-    display: block;
-    background: #111;
-    border-radius: 4px;
-    position: relative;
-}
-
-.arrow #top {
-    transform: rotate(45deg);
-    
-}
-
-.arrow #bottom {
-    transform: rotate(-45deg);
-    top:6px;    
 }

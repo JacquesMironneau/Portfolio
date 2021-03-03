@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.0.2/dist/tailwind.min.css">
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='anim.css') }}">
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 {% endblock %}
 
 {% block content %}
@@ -23,39 +24,19 @@
     <div class="w-full  flex 2xl:flex-row flex-col">
 
     <section class="infos block 2xl:w-1/3 xl:w-full z-10 bg-transparent 2xl:h-2/3 xl:h-full ">
-        <span id="name" class="text-black 2xl:text-8xl xl:text-6xl text-4xl font-mono font-black block mt-8 text-gray-600"><span class="text-gray-800 font-mono">Jacques</span> Mironneau</span>
-        <span class="underline block mt-6 2xl:h-4 xl:h-2 rounded-lg 2xl:w-2/3 xl:w-1/3 -ml-8 bg-yellow-300" ></span>
+        <span id="name" class="text-black 2xl:text-8xl xl:text-6xl text-4xl font-black block mt-8"><span class="text-gray-800">Jacques</span> Mironneau</span>
         <!-- <div class="arrow animate-pulse animate-bounce">
             <span id="top"></span>
             <span id="bottom"></span>
         </div> -->
+    
         <div id="links" class="w-5/6 flex container space-x-10 mt-24 bg-transparent rounded-lg">
-            <div id="github-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-30 text-gray-800 block overflow-hidden font-black text-center pt-6 relative transition duration-200 ease-in-out 2xl:text-6xl xl:text-5xl">Git</div>
-                <div class="button-bottom 2xl:h-1/3 w-full bg-transparent rounded-b-lg block z-20 relative transition duration-200 ease-in-out text-center text-transparent font-black text-xl group-hover:text-gray-800">
-                    <a href="https://github.com/JacquesMironneau">JacquesMironneau</a>
-                </div>
-            </div>
-            <div id="linkedin-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-30 text-gray-800  bg-transparent overflow-hidden font-black text-center pt-6 relative transition duration-200 ease-in-out font-black 2xl:text-6xl xl:text-5xl">Ln</div>
-                <div class="button-bottom h-1/3 w-full bg-transparent rounded-b-lg block z-20 relative transition duration-200 ease-in-out text-center font-black text-xl text-transparent group-hover:text-gray-800">
-                    <a href="https://www.linkedin.com/in/jacques-mironneau/">jacques-mironneau</a>
-                </div>
-            </div>
-            <div id="aboutme-button" class="button h-1/4 w-1/3 container group relative rounded-lg">
-                <div class="button-top h-24 w-full block z-30 text-gray-800 bg-transparent overflow-hidden font-black text-6xl text-center pt-6 relative transition duration-200 ease-in-out font-black 2xl:text-6xl xl:text-5xl">cv</div>
-                <div class="button-bottom h-1/3 w-full bg-transparent rounded-b-lg block z-20 relative transition duration-200 ease-in-out text-center font-black text-xl text-transparent group-hover:text-gray-800">
-                    <a href="#me">aboutme</a>
-                </div>
-            </div>
+            <a href="https://github.com/JacquesMironneau"><i class="bi bi-github"></i></a>
+            <a href="https://www.linkedin.com/in/jacques-mironneau/"><i class="bi bi-linkedin"></i></a>
+            <a href="#me"><i class="bi bi-file-person"></i></a>
         </div>
         <div id="projects" class="xl:w-full xl:pl-64 2xl:pl-4 flex container space-x-10 2xl:mt-24 xl:mt-12">
-            <div id="project-button" class="button h-1/2 w-full container group relative rounded-lg border-blue-500">
-                <div class="button-top h-24 block z-30 text-gray-800 bg-transparent overflow-hidden font-black 2xl:text-5xl xl:text-4xl  text-center  relative transition duration-200 ease-in-out font-black font-mono">See my projects</div>
-                <div class="button-bottom h-1/3 2xl:w-full xl:w-1/2 bg-transparent rounded-b-lg block z-20 relative text-center transition duration-200 ease-in-out font-black text-4xl text-transparent group-hover:text-gray-800">
-                    <a href="/projects">My projects</a>
-                </div>
-            </div>
+            <a href="/projects">See my projects</a>
         </div>  
     </section>
         
