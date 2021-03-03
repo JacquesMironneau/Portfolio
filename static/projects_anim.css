@@ -1,0 +1,31 @@
+#to-animate {
+    border-right: solid 0.1em white;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1.2em;
+}
+
+#to-animate {
+    animation: animated-text 0.9s steps(22) 0.6s 1 normal both,
+    animated-cursor 800ms steps(22) infinite;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+
+#term {
+    background-color: #223344;
+    height: 12em;
+    margin-top: -3em;
+}
+
+
+@keyframes animated-text {
+    from {width:0px;}
+    to {width: 13em;}
+}
+
+@keyframes animated-cursor {
+    from{border-right-color: white;}
+    to{border-right-color: transparent;}
+}

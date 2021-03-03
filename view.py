@@ -10,8 +10,6 @@ View (routing) of the project
 
 
 """
-print("salut!")
-    
 user_data = toml.load("config.toml")
 
 @app.route('/')

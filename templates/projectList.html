@@ -5,11 +5,14 @@
 
 {% block customHead %}
 <link rel="stylesheet" href="{{ url_for('static', filename='projectList.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='projects_anim.css') }}">
 {% endblock %}
 
 {% block content %}
 
-<h1 >Discover my projects</h1>
+<div id="term">
+<h1 id="to-animate">Discover my projects</h1>
+</div>
 <div class="card-container">
 
 {% if projectList %}
