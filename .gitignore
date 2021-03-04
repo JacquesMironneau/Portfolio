@@ -1,4 +1,6 @@
+venv/
 __pycache__/
 .vscode/
+*.sqlite3
 static/upload/*
 node_modules
