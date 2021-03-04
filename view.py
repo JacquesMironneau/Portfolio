@@ -11,7 +11,6 @@ View (routing) of the project
 
 """
 user_data = toml.load("config.toml")
-print("test!")
 
 @app.route('/')
 def index():
@@ -28,29 +27,6 @@ def projects():
     """
     result = db.session.query(Project).all()
     return render_template('projectList.html', projectList = result)
-
-# @app.route('/project/<id>')
-# def project(id = None):
-#     """
-#     Render the template for a given project (with its ID)
-#     """
-#     res = db.session.query(Project).filter(Project.id == id).first()
-
-#     if not res:
-#         abort(404)
-
-#     bg_img = [k.file_url for k in res.attached_files if k.is_background]
-
-#     tmp = [k for k in res.attached_files if not k.is_background]
-#     other_images = {f"project_image_{str(k)}": tmp[k].file_url for k in range(len(tmp)) if not tmp[k].is_background}
-
-#     return render_template('project.html', 
-#         project_name = res.project_name,
-#         short_desc= res.short_desc, 
-#         long_desc = res.long_desc, 
-#         background_image = bg_img[0] if bg_img else None,
-#         **other_images)
-
 
 
 #TODO protect with password
