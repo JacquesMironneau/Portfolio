@@ -1,1 +1,1 @@
-web: gunicorn portfolio:view
+web: gunicorn run:app
