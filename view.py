@@ -53,16 +53,16 @@ def add():
             
             dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
 
-            if not os.path.exists():
+            if not os.path.exists(dir):
                 os.makedirs(dir)
-            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__),app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'], filename))
                 
 
 
-        project = Project(request.form['project_name'], request.form['project_desc'], request.form['project_url'], filename)
-        db.session.add(project)
-        db.session.commit()
-        return redirect(url_for('projects'))
+            project = Project(request.form['project_name'], request.form['project_desc'], request.form['project_url'], filename)
+            db.session.add(project)
+            db.session.commit()
+            return redirect(url_for('projects'))
 
 
 def allowed_file(filename):
