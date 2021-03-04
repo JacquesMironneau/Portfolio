@@ -50,7 +50,8 @@ def add():
             return 'no selected file'
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(os.path.abspath(__file__),app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'], filename))
+
 
         project = Project(request.form['project_name'], request.form['project_desc'], request.form['project_url'], filename)
         db.session.add(project)
