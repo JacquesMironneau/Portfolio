@@ -1,7 +1,7 @@
 #coding : utf-8
 
 from flask_sqlalchemy import SQLAlchemy
-from run import app
+from app import app
 """
 Models of the web site:
 A Project is composed of 0..n project files

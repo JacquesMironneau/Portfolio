@@ -1,6 +1,6 @@
 from flask import Flask, render_template, abort, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
-from run import app, ALLOWED_EXTENSIONS
+from app import app, ALLOWED_EXTENSIONS
 from models import db, Project
 from werkzeug.utils import secure_filename
 import toml
