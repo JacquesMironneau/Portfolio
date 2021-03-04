@@ -55,7 +55,7 @@ def add():
 
             if not os.path.exists():
                 os.makedirs(dir)
-            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__),app.config['UPLOAD_FOLDER'], filename))
                 
 
 
