@@ -65,3 +65,10 @@ class Project(db.Model):
 #     db.session.add(file2)
 #     db.session.add(file3)
 #     db.session.commit()
+@app.cli.command("init-db")
+def init_db():
+    db.drop_all()
+    db.create_all()
+    
+
+    
