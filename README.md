@@ -2,10 +2,11 @@
 
 Highly customisable and easy to update web based portfolio.  
 The aim of this project is to provide an out of the box portfolio to present project, ideas... in an easy way.The project uses Flask framework, with jinja2 templates for rendering and sqlite3 for the data storage.  
-This project is composed of **two different views**: the visitor one, and the administrator one.  
 
-The administrator can add a project and upload files to an already created project. In order to create a project the administrator must provide a name, a description, a link to source code and a thumbnail. At every moment the administrator can delete a project by using `/delete`.
-Once the project will be created it can be seen on the `/projects` page by every visitor.  
+### Usage
+
+You can set up your profile with the `config.toml` file and then add your project on the `/add/` route.
+In order to create a project you must provide a name, a description, a link to source code and a thumbnail. At every moment you can delete a project by using `/delete`. Once the project is created it can be seen on the `/projects` page by every visitor.  
 In this way, it will be easy to just add new project by using a web interface, instead of modifying the code base.
 This project is made to be set up once and then add the projects later on. By the time you will have released new project, you can simply add them on the portfolio.  
 
@@ -13,7 +14,27 @@ This project is made to be set up once and then add the projects later on. By th
 <img src="readme_res/main_page_blue.png" width=700> 
 </p>
 
-### Set up and run:
+### Customization:
+
+This project is made to be easily customizable, just fill in your data in the `config.toml`.
+Example:
+```toml
+[data]
+firstname="YourFirstName"
+lastname="YourLastName"
+age=18
+languages=[ "English", "German"]
+other=[ "Driving licence", "..."]
+degree=[]
+skills=["Javascript", "Python", "Java", "C#"]
+hobbies=["Developping", "Designing", "Deploying"]
+github="GithubPseudo"
+linkedin="LinkedinUsername"
+cv="url"
+
+```
+
+### Set up and run (dev/local):
 ```
 python3 -m venv .
 . venv/bin/activate
@@ -21,6 +42,13 @@ pip install -r requirements.txt
 export FLASK_APP=view.py
 flask run
 ```
+
+### Host:
+
+The project can be host on heroku, using the Procfile and gunicorn.  
+Just create an app on heroku hmi and push the repo to it.
+
+You can also selfhost using docker-compose. (see `docker-compose.yml`)
 ### Routes:
 
 The project is by default launched on localhost on port 5000.  
