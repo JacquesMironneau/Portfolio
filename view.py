@@ -51,7 +51,7 @@ def add():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             
-            dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER']))
+            dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
 
             if not os.path.exists():
                 os.makedirs(dir)
