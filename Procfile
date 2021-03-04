@@ -1,2 +1,2 @@
-web: gunicorn -w 1 app:app --preload
+web: gunicorn app:app
 init: flask init-db
