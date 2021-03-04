@@ -11,7 +11,7 @@ In this way, it will be easy to just add new project by using a web interface, i
 This project is made to be set up once and then add the projects later on. By the time you will have released new project, you can simply add them on the portfolio.  
 
 <p align="center">
-<img src="readme_res/main_page_blue.png" width=700> 
+<img src="readme_res/pef.gif" width=700> 
 </p>
 
 ### Customization:
