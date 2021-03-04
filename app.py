@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = '/static/upload/'
+UPLOAD_FOLDER = 'static/upload/'
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 basedir = os.path.abspath(os.path.dirname(__file__))
