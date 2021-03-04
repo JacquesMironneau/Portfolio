@@ -73,7 +73,7 @@ def allowed_file(filename):
 def display_image(filename):
 	return redirect(url_for('static', filename='upload/' + filename), code=301)
 
-@app.route('/delete',methods=['GET','POST'])
+@app.route('/delete/',methods=['GET','POST'])
 def delete():
     """
     Request is form
