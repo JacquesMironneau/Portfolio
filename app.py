@@ -1,5 +1,6 @@
 from flask import Flask
 import os
+import secrets
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-import view
+app.config['SECRET_KEY'] = secrets.token_urlsafe(16)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 80))

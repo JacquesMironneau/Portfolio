@@ -1,15 +1,35 @@
-from flask import Flask, render_template, abort, redirect, url_for, request
+from flask import Flask, render_template, abort, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, login_required, login_user, logout_user
 from app import app, ALLOWED_EXTENSIONS
-from models import db, Project
+from models import db, Project, User
 from werkzeug.utils import secure_filename
 import toml
 import os
+import bcrypt
 """
 View (routing) of the project
 
-
 """
+
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def user_loader(user_id):
+    """
+    Given *user_id*, return the associated User object
+
+    :param unicode user_id: user_id (email) user to retrieve
+    """
+    return User.query.get(user_id)
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('login'))
+
+
 user_data = toml.load("config.toml")
 
 @app.route('/')
@@ -31,6 +51,7 @@ def projects():
 
 #TODO protect with password
 @app.route('/add/', methods = ['GET', 'POST'])
+@login_required
 def add():
     """
     IF the request is get: display the form
@@ -74,6 +95,7 @@ def display_image(filename):
 	return redirect(url_for('static', filename='upload/' + filename), code=301)
 
 @app.route('/delete/',methods=['GET','POST'])
+@login_required
 def delete():
     """
     Request is form
@@ -86,3 +108,26 @@ def delete():
         db.session.query(Project).filter(Project.id == id).delete()
         db.session.commit()
         return redirect(url_for('delete'))
+
+
+@app.route('/login', methods = ['GET','POST'])
+def login():
+
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        usr = User.query.get(request.form['user_id'])
+        if bcrypt.checkpw(b"dev",usr.password):
+            login_user(usr)
+            flash('Logged in successfully')
+            
+            next = request.args.get('next')
+            return redirect(next or url_for('index'))
+        return render_template('login.html')
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
