@@ -11,6 +11,7 @@ View (routing) of the project
 
 """
 user_data = toml.load("config.toml")
+print("test!")
 
 @app.route('/')
 def index():
