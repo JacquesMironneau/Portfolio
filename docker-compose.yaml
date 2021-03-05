@@ -2,6 +2,21 @@ services:
   web:
     build: .
     ports: 
-      - 5000:5000
-  sqlite:
-    image: "keinos/sqlite3"
+      - 80:5000
+    environment: 
+      - PEF_DB=postgresql://root:password@db:5432
+    volumes: 
+    - ./web_data:/portfolio/
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - APP_DB_USER=docker
+      - APP_DB_PASS=docker
+      - APP_DB_NAME=docker
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432

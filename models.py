@@ -12,6 +12,9 @@ A project file is basically an url related to a project
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+if not db.engine.has_table("project"):
+    db.create_all()
+
 class Project(db.Model):
     """
     sqlite table with an id, and 4 text fields
