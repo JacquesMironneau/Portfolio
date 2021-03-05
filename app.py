@@ -7,8 +7,12 @@ UPLOAD_FOLDER = 'static/upload/'
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['PEF_DB']
+if 'PEF_DB' in os.environ:
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['PEF_DB']
+else:
+    print("Please fill PEF_DB env variable with the db connection string")
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
