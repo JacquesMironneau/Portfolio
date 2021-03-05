@@ -90,7 +90,7 @@ A project represents the unit of the application, a project has several ressourc
 | project_thumbnail | Thumbnail for the project in the `/projects/` page  | String(300) |
 
 ### TODO:  
-- [x] Docker compose  :exclamation:
+- [ ] Docker compose  :exclamation:
 - [x] Main page customization
 - [ ] Mobile responsive
 - [x] Create admin page (merging add.html and upload.html could be a great start)
