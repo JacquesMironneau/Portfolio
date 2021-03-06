@@ -32,16 +32,15 @@ class Project(db.Model):
 class User(db.Model):
     """
     An admin user capable of going on admin page and add or delete projects
-    :param str email: the email address of the user
+    :param str name: the email address of the user
     :param str password: encrypted password of the user
     """
-
-    email = db.Column(db.String, primary_key=True)
+    name = db.Column(db.String, primary_key=True)
     password = db.Column(db.String)
     authenticated = db.Column(db.Boolean, default=False)
 
-    def __init__(self, email, password):
-        self.email = email
+    def __init__(self, name, password):
+        self.name = name
         self.password = password
 
     def is_active(self):
