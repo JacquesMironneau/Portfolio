@@ -3,6 +3,7 @@
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
 from app import app
+import click
 """
 Models of the web site:
 A Project is composed of 0..n project files
@@ -63,3 +64,13 @@ class User(db.Model):
 def init_db():
     db.drop_all()
     db.create_all()
+
+# should work but testing wip
+@app.cli.command("add-user")
+@click.argument("login")
+@click.argument("password")
+def add_user(login, password):
+    user = User(login, password)
+    db.session.add(user)
+    db.session.commit()
+    print(f"User added: {login} ")
