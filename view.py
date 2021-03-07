@@ -116,13 +116,16 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        usr = User.query.get(request.form['user_id'])
-        if bcrypt.checkpw(b"dev",usr.password):
-            login_user(usr)
-            flash('Logged in successfully')
-            
-            next = request.args.get('next')
-            return redirect(next or url_for('index'))
+        try:
+            usr = User.query.get(request.form['user_id'])
+            if bcrypt.checkpw(request.form['user_password'].encode('utf-8'),usr.password):
+                login_user(usr)
+                flash('Logged in successfully')
+                
+                next = request.args.get('next')
+                return redirect(next or url_for('index'))
+        except Exception: # TODO(thomas) find exception to use
+            print("Sorry this user don't exist")
         return render_template('login.html')
 
 
