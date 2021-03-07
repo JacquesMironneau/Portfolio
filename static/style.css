@@ -55,3 +55,15 @@ a:hover  {
 @media (min-width: 1280px)
 {
 }
+
+@media (max-width: 1000px)
+{
+    #projects a {
+        font-size: 24pt;
+    }
+
+    a {
+        font-size: 30pt;
+    }
+    
+}
