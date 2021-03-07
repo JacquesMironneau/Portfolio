@@ -103,3 +103,4 @@ A project represents the unit of the application, a project has several ressourc
 - [ ] Docker compose: enhance security
 - [ ] Mobile responsive
 
+For project progress see: https://trello.com/b/ctrkfRUm/pef
