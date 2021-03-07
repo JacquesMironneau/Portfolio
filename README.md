@@ -48,7 +48,11 @@ flask run
 The project can be host on heroku, using the Procfile and gunicorn.  
 Just create an app on heroku hmi and push the repo to it.
 
-You can also selfhost using docker-compose. (see `docker-compose.yml`)
+You can also selfhost using docker-compose. (see `docker-compose.yml`)  
+```docker-compose up```  
+The web app wll be available on 0.0.0.0 (on port 80)
+and the database on localhost (port 5432)
+
 ### Routes:
 
 The project is by default launched on localhost on port 5000.  
@@ -90,10 +94,12 @@ A project represents the unit of the application, a project has several ressourc
 | project_thumbnail | Thumbnail for the project in the `/projects/` page  | String(300) |
 
 ### TODO:  
-- [ ] Docker compose  :exclamation:
+- [x] Docker compose  :exclamation:
 - [x] Main page customization
-- [ ] Mobile responsive
 - [x] Create admin page (merging add.html and upload.html could be a great start)
-- [ ] Secure Authentification
 - [x] Optimise css :exclamation:
 - [x] Optimise js :exclamation:
+- [ ] Secure Authentification
+- [ ] Docker compose: enhance security
+- [ ] Mobile responsive
+
