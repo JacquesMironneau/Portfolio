@@ -115,13 +115,13 @@ def delete():
 
 def update():
     """
-    We select the project then the page redirect us to /update/<selected-id>/
+    We select the project then the page redirect us to /update_projects/<selected-id>/
     """
     if request.method == 'GET':
         return render_template('update.html', projectList = Project.query.all())
     else:
-        selected_project = request.form['project-id']
-        return redirect(url_for('update_project/'+selected_project))
+        selected_p = request.form['project-id']
+        return redirect(url_for('update_project', id = selected_p))
 
 @app.route('/update_project/<id>',methods = ['GET','POST'])
 @login_required
@@ -132,14 +132,15 @@ def update_project(id):
         return None
 
     if request.method == 'GET':
-        return render_template('update-project.html', selected_project = p)
+        return render_template('update_project.html', selected_project = p)
     else:
         p.project_name = request.form['project-name']
         p.project_desc = request.form['project-desc']
         p.project_url = request.form['project-url']
-        p.project_thumbnail = request.form['project-thumbnail']
+        if not request.form['project-thumbnail'] == "":
+            p.project_thumbnail = request.form['project-thumbnail']
         db.session.commit()
-        return redirect(url_for('delete'))
+        return redirect(url_for('projects'))
 
 @app.route('/login', methods = ['GET','POST'])
 def login():
