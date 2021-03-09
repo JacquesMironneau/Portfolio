@@ -7,6 +7,7 @@
 {% block content %} 
 <h2>Change a project value</h2>
 
+{% if projectList %}
 <form action="" method="post">
     <label for="project-id">Selectionnez un projet</label>
     <select name="project-id" id="project-id" size="5">
@@ -16,5 +17,7 @@
     </select>
     <input id="submit" type="submit" value="Select project to change">
 </form>
-
+{% else %}
+<h1> No projects can be found, please consider adding one</h1>
+{% endif %}
 {% endblock %}
