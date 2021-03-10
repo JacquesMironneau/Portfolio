@@ -42,13 +42,13 @@ def init_creds():
     return creds
 
 
-def build_service():
+def build_grive_api():
     return build('drive', 'v3', credentials=creds)
 
 
 
 def getFolder():
-    response = service.files().list(q="name='"+ PF_FOLDER_NAME +"'",
+    response = gdrive_api.files().list(q="name='"+ PF_FOLDER_NAME +"'",
                             spaces='drive',
                             fields="nextPageToken, files(id, name)",
                             pageToken=None).execute()
@@ -57,7 +57,7 @@ def getFolder():
     if not folder:
         # We create the folder named portfolio_media in the drive
 
-        f = service.files().create(body=PF_FOLDER_METADATA, fields='id').execute()
+        f = gdrive_api.files().create(body=PF_FOLDER_METADATA, fields='id').execute()
         print("folder created")
         return f.get('id')
     else:
@@ -65,4 +65,4 @@ def getFolder():
         return folder.get('id')
 
 creds = init_creds()
-service = build_service()
+gdrive_api = build_grive_api()
