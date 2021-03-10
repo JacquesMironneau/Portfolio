@@ -7,6 +7,13 @@ from werkzeug.utils import secure_filename
 import toml
 import os
 import bcrypt
+
+
+from gdrive_management import service, getFolder, PF_FOLDER_NAME
+from googleapiclient.http import MediaFileUpload
+import mimetypes
+
+
 """
 View (routing) of the project
 
@@ -49,7 +56,6 @@ def projects():
     return render_template('projectList.html', projectList = result)
 
 
-#TODO protect with password
 @app.route('/add/', methods = ['GET', 'POST'])
 @login_required
 def add():
@@ -71,13 +77,12 @@ def add():
             return 'no selected file'
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            
-            dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
 
-            if not os.path.exists(dir):
-                os.makedirs(dir)
-            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'], filename))
-                
+            drive_folder_id = getFolder()
+            metadata = { 'name':filename }
+            media = MediaFileUpload(filename, mimetype=mimetypes.guess_type(filename), resumable=True)
+            file = service.files().create(body=metadata, media_body=media, fields='id').execute()
+            print(f"added file {file}")
 
 
             project = Project(request.form['project_name'], request.form['project_desc'], request.form['project_url'], filename)
