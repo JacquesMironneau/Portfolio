@@ -38,9 +38,11 @@ class Project(db.Model):
 class User(db.Model):
     """
     An admin user capable of going on admin page and add or delete projects
-    :param str name: the email address of the user
+    :param str name: the name of the user
     :param str password: encrypted password of the user
     """
+
+    __tablename__="pfuser"
     name = db.Column(db.String, primary_key=True)
     password = db.Column(db.String)
     authenticated = db.Column(db.Boolean, default=False)
