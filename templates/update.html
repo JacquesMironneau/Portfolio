@@ -7,16 +7,7 @@
 {% block content %} 
 <h2>Change a project value</h2>
 
-{% if selected_project %}
-<form action="" method="post">
-    <input type="text" name="project-name" value="{{ selected_project.project_name }}" placeholder="Project Name">
-    <input type="text" name="project-desc" value="{{ selected_project.project_desc }}" placeholder="Project description">
-    <input type="text" name="project-url" value="{{ selected_project.project_url }}" placeholder="Project url">
-    <label for="project-thumbnail"></label>
-    <input type="file" name="project-thumbnail" value="">
-    <input type="submit" value="Submit changes">
-</form>
-{% else %}
+{% if projectList %}
 <form action="" method="post">
     <label for="project-id">Selectionnez un projet</label>
     <select name="project-id" id="project-id" size="5">
@@ -26,7 +17,7 @@
     </select>
     <input id="submit" type="submit" value="Select project to change">
 </form>
+{% else %}
+<h1> No projects can be found, please consider adding one</h1>
 {% endif %}
-
-
 {% endblock %}
