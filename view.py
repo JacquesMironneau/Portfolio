@@ -186,11 +186,12 @@ def login():
         return render_template('login.html')
     else:
         try:
-            print(request.form)
             usr = User.query.get(request.form['user_id'])
         except Exception as e: # TODO(thomas) find exception to use
             print("Sorry this user don't exist")
             print(e)
+            return render_template('login.html')
+
         finally:
             if bcrypt.checkpw(request.form['user_password'].encode('utf-8'),usr.password):
                 login_user(usr)
@@ -198,7 +199,6 @@ def login():
                 
                 next = request.args.get('next')
                 return redirect(next or url_for('index'))
-        return render_template('login.html')
 
 
 @app.route('/logout')

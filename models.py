@@ -44,7 +44,7 @@ class User(db.Model):
 
     __tablename__="pfuser"
     name = db.Column(db.String, primary_key=True)
-    password = db.Column(db.String)
+    password = db.Column(db.LargeBinary)
     authenticated = db.Column(db.Boolean, default=False)
 
     def __init__(self, name, password):
