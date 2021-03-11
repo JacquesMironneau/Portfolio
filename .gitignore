@@ -6,4 +6,4 @@ node_modules
 credentials.json
 credentials.json.bak
 token.json
-*.sqlite3
+db.sqlite3
