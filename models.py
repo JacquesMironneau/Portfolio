@@ -15,6 +15,7 @@ import click
 db = SQLAlchemy(app)
 
 if not db.engine.has_table("project"):
+    print("SHOULD CREATE DATA")
     db.create_all()
 
 

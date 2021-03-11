@@ -13,9 +13,10 @@ from gdrive_management import *
 """
 View (routing) of the project
 """
-download_projects_images(app.config['UPLOAD_FOLDER'])
-
 upload_folder = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
+
+download_projects_images(upload_folder)
+
 
 
 login_manager = LoginManager()

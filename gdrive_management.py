@@ -22,6 +22,7 @@ PF_FOLDER_METADATA= {
     'mimeType':'application/vnd.google-apps.folder'
 }
 
+#upload_folder = os.path.join(, app.config['UPLOAD_FOLDER'])
 
 def init_creds():
     """
@@ -30,7 +31,7 @@ def init_creds():
         dedicated to the portfolio
     """
     if os.environ.get('CREDS'):
-        with open("credentials.json","w") as credentials:
+        with open(os.path.join(os.path.abspath(os.path.dirname(__file__)),"credentials.json"),"w") as credentials:
             credentials.write(os.environ.get('CREDS'))
 
 
@@ -38,8 +39,8 @@ def init_creds():
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first time
 
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    if os.path.exists(os.path.join(os.path.abspath(os.path.dirname(__file__)),'token.json')):
+        creds = Credentials.from_authorized_user_file(os.path.join(os.path.abspath(os.path.dirname(__file__)),'token.json'), SCOPES)
 
     # If there are no (valid) credentials available, let the user log in
     if not creds or not creds.valid:
@@ -47,10 +48,10 @@ def init_creds():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                os.path.join(os.path.abspath(os.path.dirname(__file__)),'credentials.json'), SCOPES)
             creds = flow.run_local_server(port = 0)
         # Save the credentials for the next run
-        with open('token.json','w') as token:
+        with open(os.path.join(os.path.abspath(os.path.dirname(__file__)),'token.json'),'w') as token:
             token.write(creds.to_json())
     return creds
 
@@ -106,7 +107,8 @@ def download_projects_images(path):
             while not done:
                 status, done = downloader.next_chunk()
                 print(f"Downloading file {img.get('name')} from google drive [{int(status.progress() * 100):2d}%]")
-            with open(path+'/'+img.get('name'), "wb") as f:
+
+            with open(os.path.join(path,img.get('name')), "wb") as f:
                 f.write(file_header.getbuffer())
 
 def getImages():
