@@ -1,5 +1,6 @@
 from __future__ import print_function
 import os.path
+import os
 import io
 
 from googleapiclient.discovery import build
@@ -74,24 +75,35 @@ to the path entered
 :param str path: the path where the files will be downloaded to
 """
 def download_projects_images(path):
-    response = gdrive_api.files().list(q="'" + getFolder() + "' in parents",
-                                    spaces='drive',
-                                    fields='nextPageToken, files(id, name)',
-                                    pageToken = None).execute()
-    files = response.get('files', [])
-    if not files:
+    images = getImages()
+    if not images:
         print (f"No files found in {PF_FOLDER_NAME}")
     else:
-        for file in files:
-            req = gdrive_api.files().get_media(fileId=file.get('id'))
+        for img in images:
+            req = gdrive_api.files().get_media(fileId=img.get('id'))
             file_header = io.BytesIO()
             downloader = MediaIoBaseDownload(file_header, req)
             done = False
             while not done:
                 status, done = downloader.next_chunk()
-                print(f"Downloading file {file.get('name')} from google drive [{int(status.progress() * 100):2d}%]")
-            with open(path+'/'+file.get('name'), "wb") as f:
+                print(f"Downloading file {img.get('name')} from google drive [{int(status.progress() * 100):2d}%]")
+            with open(path+'/'+img.get('name'), "wb") as f:
                 f.write(file_header.getbuffer())
+
+"""
+get The images from the google drive folder
+"""
+def getImages():
+    response = gdrive_api.files().list(q="'" + getFolder() + "' in parents",
+                                    spaces='drive',
+                                    fields='nextPageToken, files(id, name)',
+                                    pageToken = None).execute()
+    return response.get('files',[])
+
+if os.environ.get('CREDS'):
+    with open("credentials.json","w") as credentials:
+        credentials.write(os.environ.get('CREDS'))
+
 
 creds = init_creds()
 gdrive_api = build_grive_api()

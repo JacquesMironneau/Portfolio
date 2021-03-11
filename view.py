@@ -9,7 +9,7 @@ import os
 import bcrypt
 
 
-from gdrive_management import gdrive_api, getFolder, download_projects_images, PF_FOLDER_NAME
+from gdrive_management import gdrive_api, getFolder, download_projects_images, getImages, PF_FOLDER_NAME
 from googleapiclient.http import MediaFileUpload
 import mimetypes
 
@@ -130,6 +130,14 @@ def delete():
         return render_template('delete.html', projectList = db.session.query(Project).all() )
     else:
         id = request.form['delete-project']
+
+        image_name = Project.query.get(id).project_thumbnail
+
+        for img in getImages():
+            if img.get('name') == image_name:
+                gdrive_api.files().delete(fileId=img.get('id')).execute()
+                print(f"Deleted file : {image_name} from google drive")
+
         db.session.query(Project).filter(Project.id == id).delete()
         db.session.commit()
         return redirect(url_for('delete'))
@@ -162,7 +170,7 @@ def update_project(id):
         p.project_name = request.form['project-name']
         p.project_desc = request.form['project-desc']
         p.project_url = request.form['project-url']
-        if not request.form['project-thumbnail'] == "":
+        if not request.form['project-thumbnail']:
             p.project_thumbnail = request.form['project-thumbnail']
         db.session.commit()
         return redirect(url_for('projects'))
