@@ -1,15 +1,13 @@
 [data]
-firstname="FirstName"
-lastname="LastName"
-age=18
-languages=[ "English", "German"]
-other=[ "Driving licence", "..."]
-degree=[ ]
-skills=["Javascript", "Python", "Java", "C#"]
-hobbies=["Developping", "Designing", "Deploying"]
-github="GithubPseudo"
-linkedin="LinkedinUsername"
+firstname="Jacques"
+lastname="Mironneau"
+age=20
+languages=["French", "English", "Italian"]
+other=[ "Driving licence", "PSC1"]
+degree=["2 year CS degree", "first year of MSc in computer science"]
+skills=["OOP", "Python", "Java", "C#"]
+hobbies=["Swimming", "Music", "Hackathon", "Video editing"]
+github="JacquesMironneau"
+linkedin="jacques-mironneau"
 cv="url"
-#pp="https://avatars.githubusercontent.com/u/34798699?s=460&u=d7b3c05d7858d26b9a2a4d6e627296dd0dc28a1e&v=4"
-pp="https://www.wikihow.com/images/6/61/Draw-a-Cartoon-Man-Step-15.jpg"
-
+pp="https://avatars.githubusercontent.com/u/34798699?s=460&u=d7b3c05d7858d26b9a2a4d6e627296dd0dc28a1e&v=4"

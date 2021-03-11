@@ -191,7 +191,7 @@ def update_project(id):
         db.session.commit()
         return redirect(url_for('projects'))
 
-@app.route('/login', methods = ['GET','POST'])
+@app.route('/login/', methods = ['GET','POST'])
 def login():
     """
         Display a basic login form in order to log in a user
@@ -213,7 +213,7 @@ def login():
             return render_template('login.html')
 
 
-@app.route('/logout')
+@app.route('/logout/')
 @login_required
 def logout():
     """
