@@ -3,6 +3,7 @@ import os.path
 import os
 import io
 import mimetypes
+from flask.globals import request
 
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -11,20 +12,18 @@ from google.oauth2.credentials import Credentials
 
 from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
 
-
+# constants / global variables for gdrive
 # NOTE If scopes are modified you need to delete the file token.json
-# TODO(thomas) allow users to enter their drive url or folder url on app first startup
 SCOPES = ['https://www.googleapis.com/auth/drive']
 PF_FOLDER_NAME = "portfolio_media"
+PF_FOLDER_ID = None
 PF_FOLDER_METADATA= {
     'name':PF_FOLDER_NAME,
     'mimeType':'application/vnd.google-apps.folder'
 }
 
-PF_FOLDER_ID = None
 
-
-
+# TODO(thomas) doc
 def init_creds():
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
@@ -46,22 +45,28 @@ def init_creds():
             token.write(creds.to_json())
     return creds
 
-
 def build_grive_api():
+    """
+    returns an object that we use to call the api
+    """
     return build('drive', 'v3', credentials=creds)
 
-
-
 def getFolder():
-    response = gdrive_api.files().list(q="name='"+ PF_FOLDER_NAME +"'",
+    """
+    Get the Id of the folder stored on google drive
+    :return id: the id of the folder where images are stored on google drive
+    """
+    # NOTE(thomas) we prolly should make the request first, and then execute it in a separate line
+    # We create the request to find the folder named portfolio_media
+    request = gdrive_api.files().list(q="name='"+ PF_FOLDER_NAME +"'",
                             spaces='drive',
                             fields="nextPageToken, files(id, name)",
                             pageToken=None).execute()
 
     # check if there is a folder with that name
-    if len(response.get('files',[])) > 0:
+    if len(request.get('files',[])) > 0:
         # It exist so we return it's id
-        folder = response.get('files',[])[0].get('id')
+        folder = request.get('files',[])[0].get('id')
         return folder
     else:
         # We create the folder named portfolio_media in the drive
@@ -70,13 +75,13 @@ def getFolder():
         return f.get('id')
 
 
-"""
-download the images stored on the google drive folder
-to the path entered
-
-:param str path: the path where the files will be downloaded to
-"""
 def download_projects_images(path):
+    """
+    Downloads the images stored on the google drive folder
+    to the path entered
+
+    :param str path: the path where the files will be downloaded to
+    """
     images = getImages()
     if not images:
         print (f"No files found in {PF_FOLDER_NAME}")
@@ -92,10 +97,11 @@ def download_projects_images(path):
             with open(path+'/'+img.get('name'), "wb") as f:
                 f.write(file_header.getbuffer())
 
-"""
-get The images from the google drive folder
-"""
 def getImages():
+    """
+    get the images stored on the google drive folder
+    return: ids: ids of the images stored on the drive folder
+    """
     response = gdrive_api.files().list(q="'" + getFolder() + "' in parents",
                                     spaces='drive',
                                     fields='nextPageToken, files(id, name)',
@@ -104,6 +110,10 @@ def getImages():
 
 
 def uploadImageToDriveFolder(filename):
+    """
+    upload a given image to the drive folder
+    :param str filename: the name of the file we want to upload
+    """
     # creating the file metadata to add it to the google drive folder
     file_md = {
         'name':filename,
@@ -121,12 +131,11 @@ def uploadImageToDriveFolder(filename):
                                         fields='id').execute()
     print(f"File added : {file} to {PF_FOLDER_NAME}")
 
-
-
+# NOTE(thomas) put this somewhere else or make another function for that
+# And maybe check if the file credentials.json exists in order to create it or not
 if os.environ.get('CREDS'):
     with open("credentials.json","w") as credentials:
         credentials.write(os.environ.get('CREDS'))
-
 
 
 creds = init_creds()

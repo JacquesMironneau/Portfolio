@@ -5,16 +5,20 @@ import bcrypt
 from app import app
 from flask_migrate import Migrate
 import click
+
+
 """
 Models of the web site:
 A Project is composed of 0..n project files
 A project file is basically an url related to a project
 """
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 if not db.engine.has_table("project"):
     db.create_all()
+
 
 class Project(db.Model):
     """
@@ -34,6 +38,7 @@ class Project(db.Model):
     
     def __str__(self):
         return f"project_id: {self.id}\n   name: {self.project_name}\n    description: {self.project_desc}\n    project_url: {self.project_url}\n   thumbnail_url: {self.project_thumbnail}"
+
 
 class User(db.Model):
     """

@@ -12,7 +12,6 @@ from gdrive_management import *
 
 """
 View (routing) of the project
-
 """
 download_projects_images(app.config['UPLOAD_FOLDER'])
 
@@ -28,7 +27,7 @@ def user_loader(user_id):
     """
     Given *user_id*, return the associated User object
 
-    :param unicode user_id: user_id (email) user to retrieve
+    :param unicode user_id: user_id (name) user to retrieve
     """
     return User.query.get(user_id)
 
@@ -88,15 +87,23 @@ def add():
             db.session.commit()
             return redirect(url_for('projects'))
 
+
+# TODO(thomas) change the doc
 def uploadImageToServer(file, filename):
+    """
+    Upload a given image to the server
+
+    :param bytes file : the binary file we posted
+    :param str filename: oui
+    """
     if not os.path.exists(upload_folder):
         os.makedirs(upload_folder)
     file.save(os.path.join(upload_folder, filename))
 
-"""
-Checks if the extension of a file is allowed
-"""
 def allowed_file(filename):
+    """
+    Checks if the extension of a file is allowed
+    """
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 

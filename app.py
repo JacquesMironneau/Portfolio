@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = 'static/upload/'
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-
 basedir = os.path.abspath(os.path.dirname(__file__))
+
 if 'PEF_DB' in os.environ:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['PEF_DB']
 else:
