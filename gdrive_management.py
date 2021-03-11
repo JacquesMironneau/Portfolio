@@ -1,10 +1,13 @@
 from __future__ import print_function
 import os.path
+import io
 
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
+
+from googleapiclient.http import MediaIoBaseDownload
 
 
 # NOTE If scopes are modified you need to delete the file token.json
@@ -61,8 +64,34 @@ def getFolder():
         print("folder created")
         return f.get('id')
     else:
-        print(folder)
         return folder.get('id')
+
+
+"""
+download the images stored on the google drive folder
+to the path entered
+
+:param str path: the path where the files will be downloaded to
+"""
+def download_projects_images(path):
+    response = gdrive_api.files().list(q="'" + getFolder() + "' in parents",
+                                    spaces='drive',
+                                    fields='nextPageToken, files(id, name)',
+                                    pageToken = None).execute()
+    files = response.get('files', [])
+    if not files:
+        print (f"No files found in {PF_FOLDER_NAME}")
+    else:
+        for file in files:
+            req = gdrive_api.files().get_media(fileId=file.get('id'))
+            file_header = io.BytesIO()
+            downloader = MediaIoBaseDownload(file_header, req)
+            done = False
+            while not done:
+                status, done = downloader.next_chunk()
+                print(f"Downloading file {file.get('name')} from google drive [{int(status.progress() * 100):2d}%]")
+            with open(path+'/'+file.get('name'), "wb") as f:
+                f.write(file_header.getbuffer())
 
 creds = init_creds()
 gdrive_api = build_grive_api()

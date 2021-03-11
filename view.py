@@ -9,7 +9,7 @@ import os
 import bcrypt
 
 
-from gdrive_management import gdrive_api, getFolder, PF_FOLDER_NAME
+from gdrive_management import gdrive_api, getFolder, download_projects_images, PF_FOLDER_NAME
 from googleapiclient.http import MediaFileUpload
 import mimetypes
 
@@ -18,7 +18,7 @@ import mimetypes
 View (routing) of the project
 
 """
-
+download_projects_images(app.config['UPLOAD_FOLDER'])
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -50,7 +50,6 @@ def index():
 def projects():
     """
     Display every list
-    TODO: use the orojectList.html to display every projects properly
     """
     result = db.session.query(Project).all()
     return render_template('projectList.html', projectList = result)
@@ -75,6 +74,7 @@ def add():
         if file.filename == '':
             # handle no selected file
             return 'no selected file'
+        # if the file extension is allowed
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
            
@@ -84,26 +84,33 @@ def add():
                 os.makedirs(dir)
             file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'], filename))
 
+            # creating the file metadata to add it to the google drive folder
             file_md = {
                 'name':filename,
                 'parents': [getFolder()]
             }
 
+            # path of the file on the server
             filepath = app.config['UPLOAD_FOLDER'] + '/' + filename
+            # building the media metadata
             media = MediaFileUpload(filepath,
                                     mimetype=mimetypes.guess_type(filename)[0])
+            # uploading the file to the google drive folder
             file = gdrive_api.files().create(body=file_md,
                                                 media_body=media,
                                                 fields='id').execute()
             print(f"File added : {file} to {PF_FOLDER_NAME}")
 
 
+            # finally we create a new project with the informations given by the user and we adding it to the database
             project = Project(request.form['project_name'], request.form['project_desc'], request.form['project_url'], filename)
             db.session.add(project)
             db.session.commit()
             return redirect(url_for('projects'))
 
-
+"""
+Checks if the extension of a file is allowed
+"""
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
