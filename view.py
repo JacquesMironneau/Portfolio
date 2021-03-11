@@ -196,7 +196,7 @@ def login():
         except Exception as e: # TODO(thomas) find exception to use
             print("Sorry this user don't exist")
             print(e)
-        return render_template('login.html')
+            return render_template('login.html')
 
 
 @app.route('/logout')
