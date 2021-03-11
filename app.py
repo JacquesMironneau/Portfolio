@@ -2,7 +2,13 @@ from flask import Flask
 import os
 import secrets
 
+
+"""
+    Application settings and configuration
+    we here chose between a remote psql or a local sqlite database according to the env var
+"""
 app = Flask(__name__)
+
 
 UPLOAD_FOLDER = 'static/upload/'
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'gif'}

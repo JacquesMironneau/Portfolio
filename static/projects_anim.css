@@ -1,3 +1,7 @@
+/*
+* Css style for the projects page (text animation)
+*/
+
 #to-animate {
     border-right: solid 0.1em white;
     white-space: nowrap;
@@ -10,7 +14,6 @@
 #to-animate {
     animation: animated-text 0.9s steps(22) 0.6s 1 normal both,
     animated-cursor 800ms steps(22) infinite;
-    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
 }
 
 #term {

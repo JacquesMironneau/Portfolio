@@ -1,20 +1,18 @@
 #coding : utf-8
 
 from flask_sqlalchemy import SQLAlchemy
-import bcrypt
 from app import app
-from flask_migrate import Migrate
+import bcrypt
 import click
 
 
 """
-Models of the web site:
-A Project is composed of 0..n project files
-A project file is basically an url related to a project
+    Models of the portfolio (tables of the database using the SQLAlchemy ORM)
+    A Project is the main unit of the application
+    An a user here represent an "administrator" that can perform task to add/delete/update the project
 """
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 if not db.engine.has_table("project"):
     db.create_all()
@@ -22,15 +20,22 @@ if not db.engine.has_table("project"):
 
 class Project(db.Model):
     """
-    sqlite table with an id, and 4 text fields
+        Project unit (here the owner add his realizations (called projects))
+
+        Attributes
+        ----------
+        A project is composed of an id (system handled), a name, a description
+        an url (mainly used to point to the repository for programming project)
+        and a thumbnail.
     """
     id = db.Column(db.Integer, primary_key=True)
     project_name = db.Column(db.String(200), nullable=False)
     project_desc = db.Column(db.Text, nullable=False)
     project_url = db.Column(db.String(300), nullable=False)
-    project_thumbnail = db.Column(db.String(300), nullable=True) # url of the thumbnail
+    # here a project thumbnail is just the path to the ressource
+    project_thumbnail = db.Column(db.String(300), nullable=True) 
 
-    def __init__(self, project_name, project_desc, project_url, project_thumbnail):
+    def __init__(self, project_name: str, project_desc: str, project_url: str, project_thumbnail: str):
         self.project_name = project_name
         self.project_desc = project_desc
         self.project_url = project_url
@@ -42,9 +47,15 @@ class Project(db.Model):
 
 class User(db.Model):
     """
-    An admin user capable of going on admin page and add or delete projects
-    :param str name: the name of the user
-    :param str password: encrypted password of the user
+        An admin user capable of going on admin page and add/delete/update projects
+
+        Attributes
+        ------------
+        name: str
+            the name/login of the user
+
+        password: str
+            encrypted password of the user
     """
 
     __tablename__="pfuser"
@@ -52,7 +63,7 @@ class User(db.Model):
     password = db.Column(db.LargeBinary)
     authenticated = db.Column(db.Boolean, default=False)
 
-    def __init__(self, name, password):
+    def __init__(self, name: str, password: str):
         self.name = name
         self.password = password
 
@@ -72,12 +83,15 @@ class User(db.Model):
         """False"""
         return False
 
+"""
+ App CLI command - WIP
+ TODO: enable their functionment in any environment
+"""
 @app.cli.command("init-db")
 def init_db():
     db.drop_all()
     db.create_all()
 
-# should work but testing wip
 @app.cli.command("add-user")
 @click.argument("login")
 @click.argument("password")

@@ -1,3 +1,7 @@
+/*
+* Animation for terminal (command and result writing)
+*/
+
 #to-animate {
     border-right: solid 3px rgba(255, 255, 255, 0.75);
     white-space: nowrap;
@@ -7,11 +11,9 @@
 #to-animate {
     animation: animated-text 0.5s steps(7) 1.5s 1 normal both,
     animated-cursor 800ms steps(7) infinite;
-    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
 }
 
 #cmd {
-    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
     visibility: hidden;
     animation: 0.1s display-cmd-result;
     animation-delay: 2.1s;
