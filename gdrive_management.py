@@ -58,15 +58,16 @@ def getFolder():
                             fields="nextPageToken, files(id, name)",
                             pageToken=None).execute()
 
-    folder = response.get('files',[])[0]
-    if not folder:
+    # check if there is a folder with that name
+    if len(response.get('files',[])) > 0:
+        # It exist so we return it's id
+        folder = response.get('files',[])[0].get('id')
+        return folder
+    else:
         # We create the folder named portfolio_media in the drive
-
         f = gdrive_api.files().create(body=PF_FOLDER_METADATA, fields='id').execute()
         print("folder created")
         return f.get('id')
-    else:
-        return folder.get('id')
 
 
 """
