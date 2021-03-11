@@ -139,11 +139,12 @@ h1{
 .error {
     font-weight: 900;
     align-content: center;
-    text-align: center;
     vertical-align: middle;
+    text-align: center;
+    justify-content: center;
     font-size: 42pt;
-    margin: auto;
-    position: absolute;
+    position: relative;
     width: 100%;
-    top: 40%;
+    margin: auto;
+    transform: translateY(300px);
 }
