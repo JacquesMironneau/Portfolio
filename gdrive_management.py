@@ -2,13 +2,14 @@ from __future__ import print_function
 import os.path
 import os
 import io
+import mimetypes
 
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
-from googleapiclient.http import MediaIoBaseDownload
+from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
 
 
 # NOTE If scopes are modified you need to delete the file token.json
@@ -100,9 +101,31 @@ def getImages():
                                     pageToken = None).execute()
     return response.get('files',[])
 
+
+def uploadImageToDriveFolder(filename):
+    # creating the file metadata to add it to the google drive folder
+    file_md = {
+        'name':filename,
+        'parents': [getFolder()]
+    }
+
+    # path of the file on the server
+    filepath = 'static/upload/' + filename
+    # building the media metadata
+    media = MediaFileUpload(filepath,
+                            mimetype=mimetypes.guess_type(filename)[0])
+    # uploading the file to the google drive folder
+    file = gdrive_api.files().create(body=file_md,
+                                        media_body=media,
+                                        fields='id').execute()
+    print(f"File added : {file} to {PF_FOLDER_NAME}")
+
+
+
 if os.environ.get('CREDS'):
     with open("credentials.json","w") as credentials:
         credentials.write(os.environ.get('CREDS'))
+
 
 
 creds = init_creds()

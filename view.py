@@ -8,11 +8,7 @@ import toml
 import os
 import bcrypt
 
-
-from gdrive_management import gdrive_api, getFolder, download_projects_images, getImages, PF_FOLDER_NAME
-from googleapiclient.http import MediaFileUpload
-import mimetypes
-
+from gdrive_management import *
 
 """
 View (routing) of the project
@@ -20,8 +16,12 @@ View (routing) of the project
 """
 download_projects_images(app.config['UPLOAD_FOLDER'])
 
+upload_folder = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
+
+
 login_manager = LoginManager()
 login_manager.init_app(app)
+user_data = toml.load("config.toml")
 
 @login_manager.user_loader
 def user_loader(user_id):
@@ -37,7 +37,6 @@ def unauthorized():
     return redirect(url_for('login'))
 
 
-user_data = toml.load("config.toml")
 
 @app.route('/')
 def index():
@@ -78,28 +77,9 @@ def add():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
            
-            dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
+            uploadImageToServer(file, filename)
 
-            if not os.path.exists(dir):
-                os.makedirs(dir)
-            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'], filename))
-
-            # creating the file metadata to add it to the google drive folder
-            file_md = {
-                'name':filename,
-                'parents': [getFolder()]
-            }
-
-            # path of the file on the server
-            filepath = app.config['UPLOAD_FOLDER'] + '/' + filename
-            # building the media metadata
-            media = MediaFileUpload(filepath,
-                                    mimetype=mimetypes.guess_type(filename)[0])
-            # uploading the file to the google drive folder
-            file = gdrive_api.files().create(body=file_md,
-                                                media_body=media,
-                                                fields='id').execute()
-            print(f"File added : {file} to {PF_FOLDER_NAME}")
+            uploadImageToDriveFolder(filename)
 
 
             # finally we create a new project with the informations given by the user and we adding it to the database
@@ -107,6 +87,11 @@ def add():
             db.session.add(project)
             db.session.commit()
             return redirect(url_for('projects'))
+
+def uploadImageToServer(file, filename):
+    if not os.path.exists(upload_folder):
+        os.makedirs(upload_folder)
+    file.save(os.path.join(upload_folder, filename))
 
 """
 Checks if the extension of a file is allowed
@@ -137,6 +122,7 @@ def delete():
             if img.get('name') == image_name:
                 gdrive_api.files().delete(fileId=img.get('id')).execute()
                 print(f"Deleted file : {image_name} from google drive")
+        os.remove(os.path.join(upload_folder, image_name))
 
         db.session.query(Project).filter(Project.id == id).delete()
         db.session.commit()
@@ -170,8 +156,26 @@ def update_project(id):
         p.project_name = request.form['project-name']
         p.project_desc = request.form['project-desc']
         p.project_url = request.form['project-url']
-        if not request.form['project-thumbnail'] == '':
-            p.project_thumbnail = request.form['project-thumbnail']
+            
+        if not request.files['project-thumbnail'].filename == '':
+            imgs = getImages()
+            for img in imgs:
+                if img.get('name') == p.project_thumbnail:
+                    gdrive_api.files().delete(fileId=img.get('id')).execute()
+            # update thumbnail of the project (delete the old one first and set the new path in the project_thumbnail variable)
+            os.remove(os.path.join(upload_folder, p.project_thumbnail))
+            p.project_thumbnail = request.files['project-thumbnail'].filename
+
+            # update the file in the update folder
+            file = request.files['project-thumbnail']
+            # if the file extension is allowed
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+            
+                uploadImageToServer(file, filename)
+
+                uploadImageToDriveFolder(filename)
+
         db.session.commit()
         return redirect(url_for('projects'))
 
