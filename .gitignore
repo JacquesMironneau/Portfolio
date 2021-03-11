@@ -3,3 +3,6 @@ __pycache__/
 .vscode/
 static/upload/*
 node_modules
+credentials.json
+credentials.json.bak
+token.json
