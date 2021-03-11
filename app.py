@@ -1,7 +1,7 @@
 from flask import Flask
 import os
 import secrets
-
+import logging
 
 """
     Application settings and configuration
@@ -25,8 +25,12 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 app.config['SECRET_KEY'] = secrets.token_urlsafe(16)
 
-import view
-
 
 if __name__ == "__main__":
+    import view
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 80))
+
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
