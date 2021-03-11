@@ -23,8 +23,17 @@ PF_FOLDER_METADATA= {
 }
 
 
-# TODO(thomas) doc
 def init_creds():
+    """
+        Inits the credentials for a google drive application,
+        in order to store project's thumbnail on a google drive folder,
+        dedicated to the portfolio
+    """
+    if os.environ.get('CREDS'):
+        with open("credentials.json","w") as credentials:
+            credentials.write(os.environ.get('CREDS'))
+
+
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first time
@@ -45,16 +54,19 @@ def init_creds():
             token.write(creds.to_json())
     return creds
 
+
 def build_grive_api():
     """
-    returns an object that we use to call the api
+        Returns an object that we use to call the api
     """
     return build('drive', 'v3', credentials=creds)
 
+
 def getFolder():
     """
-    Get the Id of the folder stored on google drive
-    :return id: the id of the folder where images are stored on google drive
+        Get the Id of the folder stored on google drive
+
+        :return str id: the id of the folder where images are stored on google drive
     """
     # NOTE(thomas) we prolly should make the request first, and then execute it in a separate line
     # We create the request to find the folder named portfolio_media
@@ -77,10 +89,10 @@ def getFolder():
 
 def download_projects_images(path):
     """
-    Downloads the images stored on the google drive folder
-    to the path entered
+        Downloads the images stored on the google drive folder,
+        to a given path
 
-    :param str path: the path where the files will be downloaded to
+        :param str path: the path where the files will be downloaded to
     """
     images = getImages()
     if not images:
@@ -99,8 +111,9 @@ def download_projects_images(path):
 
 def getImages():
     """
-    get the images stored on the google drive folder
-    return: ids: ids of the images stored on the drive folder
+        Get the images stored on the google drive folder
+
+        :return Object ids: a list of images ids stored in the google drive folder
     """
     response = gdrive_api.files().list(q="'" + getFolder() + "' in parents",
                                     spaces='drive',
@@ -111,8 +124,9 @@ def getImages():
 
 def uploadImageToDriveFolder(filename):
     """
-    upload a given image to the drive folder
-    :param str filename: the name of the file we want to upload
+        Upload a given image to the drive folder
+
+        :param str filename: the name of the file we want to upload
     """
     # creating the file metadata to add it to the google drive folder
     file_md = {
@@ -131,11 +145,7 @@ def uploadImageToDriveFolder(filename):
                                         fields='id').execute()
     print(f"File added : {file} to {PF_FOLDER_NAME}")
 
-# NOTE(thomas) put this somewhere else or make another function for that
-# And maybe check if the file credentials.json exists in order to create it or not
-if os.environ.get('CREDS'):
-    with open("credentials.json","w") as credentials:
-        credentials.write(os.environ.get('CREDS'))
+
 
 
 creds = init_creds()

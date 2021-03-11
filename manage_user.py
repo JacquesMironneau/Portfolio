@@ -29,7 +29,7 @@ readline.parse_and_bind("tab: complete")
 
 def process_command(command:str):
     """
-    Process the commands that the user enters
+        Process the commands that the user enters
     """
     try:
         # we parse the command
@@ -61,9 +61,10 @@ def process_command(command:str):
 
 def create_user(name:str, password):
     """
-    Create a user with a given username and password in the database
-    :param str name: the username
-    :param str password: the password
+        Create a user with a given username and password in the database
+
+        :param str name: the username
+        :param str password: the password
     """
     if User.query.get(name):
         print(f"Sorry the user '{name}' already exists in database, please consider using another name")
@@ -79,8 +80,9 @@ def create_user(name:str, password):
 
 def update_user(name:str):
     """
-    Change the password of a user, it updates the user password in the database
-    :param str name: the name of the user we want to change the password
+        Change the password of a user, it updates the user password in the database
+
+        :param str name: the name of the user we want to change the password
     """
     if User.query.get(name):
         u = User.query.get(name)
@@ -100,8 +102,9 @@ def update_user(name:str):
 
 def delete_user(name:str):
     """
-    Delete a user from database
-    :param str name: the name of teh user we want to delete
+        Delete a user from database
+
+        :param str name: the name of teh user we want to delete
     """
     if not User.query.get(name):
         print(f"Sorry the user '{name}' cannot be found")
@@ -117,8 +120,9 @@ def delete_user(name:str):
 
 def list_users(complete=False):
     """
-    Give a list of all the users stored in the database
-    :param boolean complete: whether the output of the command should be verbose or not
+        Give a list of all the users stored in the database
+
+        :param boolean complete: whether the output of the command should be verbose or not
     """
     users = User.query.all()
     if len(users) == 0:
@@ -134,7 +138,7 @@ def list_users(complete=False):
 
 def usage():
     """
-    Shows how to use the cli
+        Shows how to use the cli
     """
     print("Here is a list of available commands:")
     print("     create / createuser / create_user / adduser / add [username] [password] : Add a new user in the database")
@@ -146,7 +150,7 @@ def usage():
 
 def quit():
     """
-    Quit the cli properly
+        Quit the cli properly
     """
     print("Bye!\n")
     exit()

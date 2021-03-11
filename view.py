@@ -25,9 +25,9 @@ user_data = toml.load("config.toml")
 @login_manager.user_loader
 def user_loader(user_id):
     """
-    Given *user_id*, return the associated User object
+        Given *user_id*, return the associated User object
 
-    :param unicode user_id: user_id (name) user to retrieve
+        :param unicode user_id: user_id (name) user to retrieve
     """
     return User.query.get(user_id)
 
@@ -40,14 +40,14 @@ def unauthorized():
 @app.route('/')
 def index():
     """
-    Display the index page (with information about me, profile pic...)
+        Display the index page (with information about me, profile pic...)
     """
     return render_template('index.html', **user_data)
 
 @app.route('/projects/')
 def projects():
     """
-    Display every list
+        Display every list
     """
     result = db.session.query(Project).all()
     return render_template('projectList.html', projectList = result)
@@ -56,10 +56,11 @@ def projects():
 @app.route('/add/', methods = ['GET', 'POST'])
 @login_required
 def add():
+    ### IF the request is get: display the form
+    ### else it means that the form has been submited (see add.html)
+    ### => add the fields in the db and redirect to the project list page
     """
-    IF the request is get: display the form
-    else it means that the form has been submited (see add.html)
-    => add the fields in the db and redirect to the project list page
+        Display the form to add a project
     """
     if request.method == 'GET':
         return render_template('add.html', projectList = db.session.query(Project).all())
@@ -88,21 +89,21 @@ def add():
             return redirect(url_for('projects'))
 
 
-# TODO(thomas) change the doc
 def uploadImageToServer(file, filename):
     """
-    Upload a given image to the server
+        Upload a given image to the server
 
-    :param bytes file : the binary file we posted
-    :param str filename: oui
+        :param bytes file : the binary file we will save on the server
+        :param str filename: the name of the file we want to save on the server
     """
     if not os.path.exists(upload_folder):
         os.makedirs(upload_folder)
     file.save(os.path.join(upload_folder, filename))
 
-def allowed_file(filename):
+
+def allowed_file(filename:str):
     """
-    Checks if the extension of a file is allowed
+        Checks if the extension of a given is allowed
     """
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -114,9 +115,10 @@ def display_image(filename):
 @app.route('/delete/',methods=['GET','POST'])
 @login_required
 def delete():
+    ### Request is form
+    ### so we redirect to a page like /delete/id where id is selected from the delete_project
     """
-    Request is form
-    so we redirect to a page like /delete/id where id is selected from the delete_project
+        Display a list of the projects, if one is selected it will be deleted from the database
     """
     if request.method == 'GET':
         return render_template('delete.html', projectList = db.session.query(Project).all() )
@@ -141,7 +143,7 @@ def delete():
 
 def update():
     """
-    We select the project then the page redirect us to /update_projects/<selected-id>/
+        We select the project we want to update/change in a list
     """
     if request.method == 'GET':
         return render_template('update.html', projectList = Project.query.all())
@@ -152,6 +154,9 @@ def update():
 @app.route('/update_project/<id>',methods = ['GET','POST'])
 @login_required
 def update_project(id):
+    """
+        Display the form to modify/change/update a project's informations
+    """
     try:
         p = Project.query.get(id)
     except Exception:
@@ -188,7 +193,9 @@ def update_project(id):
 
 @app.route('/login', methods = ['GET','POST'])
 def login():
-
+    """
+        Display a basic login form in order to log in a user
+    """
     if request.method == 'GET':
         return render_template('login.html')
     else:
@@ -200,7 +207,7 @@ def login():
                 
                 next = request.args.get('next')
                 return redirect(next or url_for('index'))
-        except Exception as e: # TODO(thomas) find exception to use
+        except Exception as e:
             print("Sorry this user don't exist")
             print(e)
             return render_template('login.html')
@@ -209,5 +216,8 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
+    """
+        Logout the actual authenticated/logged user
+    """
     logout_user()
     return redirect(url_for('index'))
