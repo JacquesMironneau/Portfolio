@@ -170,7 +170,7 @@ def update_project(id):
         p.project_name = request.form['project-name']
         p.project_desc = request.form['project-desc']
         p.project_url = request.form['project-url']
-        if not request.form['project-thumbnail']:
+        if not request.form['project-thumbnail'] == '':
             p.project_thumbnail = request.form['project-thumbnail']
         db.session.commit()
         return redirect(url_for('projects'))
