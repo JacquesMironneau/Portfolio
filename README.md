@@ -63,12 +63,18 @@ and the database on localhost (port 5432)
 The project is by default launched on localhost on port 5000.  
 **Main page: (Information about the person)**  
 `/`  
+**To display the existing projects:**  
+`/projects/`   
+**To access the following commands**  
+`/login/`  
 **To add a project:**  
 `/add/`  
-**To display the existing projects:**  
-`/projects/`  
-**To delete one or several projects:**
-`/delete`
+**To delete one or several projects:**  
+`/delete/`  
+**To update a project:**  
+`/update/`
+
+
 
 ### Project structure
 <pre>
