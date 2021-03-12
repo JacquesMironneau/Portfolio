@@ -4,6 +4,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+
 h2{
     background: #223344;
     color : white;
@@ -15,47 +21,60 @@ h2{
 
 form{
     display: grid;
-    width: 50%;
+    width: 40%;
     padding-top: 5%;
-    padding-left: 5%;        
+    font-family: 'Poppins', sans-serif;     
 }
 
-#new_project_name{
-    margin-bottom: 3%;
-    font-weight: bold;
-    font-size:25px;
-    color : #223344;
-    border-radius: 0.5em;
+input[type=text] {
+    border-radius: 5px;
+    border: solid 1px transparent;
+    border-left: solid 5px #223344;
+    font-size: large;
+    display: block;
 }
 
-#new_project_short-desc{
-    margin-bottom: 3%;
-    color : #223344;
-    height: 100px;
-    border-radius: 0.5em;
+textarea {
+    border: solid 1px transparent;
+    border-radius: 5px;
+    border-left: solid 5px #223344;
+    height: 4rem;
+    font-family: 'Poppins',sans-serif;
+    font-size: large;
+    display: block;
 }
 
-#long-desc{
-    margin-bottom: 3%;
-    color : #223344;
-    height: 400px;
-    border-radius: 0.5em;
-}
-
-#submit{
-    margin-left:auto;
-    width: 50%;
+input[type=submit]{
+    margin:auto;
+    min-width: 30%;
+    width: auto;
     margin-right: auto;
     background: #223344;
     border-radius: 0.5em;
     color:white;
-    font-size: 1.2em;
+    font-size: larger;
+    font-weight: bolder;
+    display: block;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
-#delete-project{
-    margin-bottom: 3%;
-    font-weight: bold;
-    font-size:25px;
-    color : #223344;
-    border-radius: 0.5em;
+input[type=file]{
+    border-radius: 5px;
+    border: solid 1px transparent;
+    font-size: 1.2em;
+    display: block;
+}
+
+select {
+    border: solid 1px transparent;
+    border-radius: 5px;
+    border-left: solid 10px #223344;
+    font-size: medium;
+    display: block;
+    text-transform: capitalize;
+}
+
+label {
+    margin-bottom: 10px;
 }
