@@ -116,6 +116,11 @@ def download_projects_images(path):
                 status, done = downloader.next_chunk()
                 print(f"Downloading file {img.get('name')} from google drive [{int(status.progress() * 100):2d}%]")
 
+
+            if not os.path.exists(path):
+                os.makedirs(path)
+                print(f" {path} created", flush=True)
+
             with open(os.path.join(path,img.get('name')), "wb") as f:
                 f.write(file_header.getbuffer())
 
