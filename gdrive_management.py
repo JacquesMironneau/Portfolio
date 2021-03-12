@@ -33,6 +33,10 @@ def init_creds():
         with open("credentials.json","w") as credentials:
             credentials.write(os.environ.get('CREDS'))
 
+    if.os.environ.get('DRIVE_TOKEN'):
+        with open('token.json','w') as token:
+            token.write(os.environ.get('CREDS'))
+
 
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
