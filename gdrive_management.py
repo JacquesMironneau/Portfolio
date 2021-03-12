@@ -6,15 +6,13 @@ import mimetypes
 from flask.globals import request
 
 from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
+
+from gendrivetoken import genTokenFromCreds, SCOPES
 
 from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
 
 # constants / global variables for gdrive
-# NOTE If scopes are modified you need to delete the file token.json
-SCOPES = ['https://www.googleapis.com/auth/drive']
 PF_FOLDER_NAME = "portfolio_media"
 PF_FOLDER_ID = None
 PF_FOLDER_METADATA= {
@@ -33,10 +31,6 @@ def init_creds():
         with open("credentials.json","w") as credentials:
             credentials.write(os.environ.get('CREDS'))
 
-    if os.environ.get('DRIVE_TOKEN'):
-        with open('token.json','w') as token:
-            token.write(os.environ.get('CREDS'))
-
 
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
@@ -45,18 +39,7 @@ def init_creds():
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
 
-    # If there are no (valid) credentials available, let the user log in
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port = 0)
-        # Save the credentials for the next run
-        with open('token.json','w') as token:
-            token.write(creds.to_json())
-    return creds
+    return genTokenFromCreds(creds)
 
 
 def build_grive_api():
