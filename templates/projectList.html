@@ -13,9 +13,11 @@
 <div id="term">
 <h1 id="to-animate">Discover my projects</h1>
 </div>
-<div class="card-container">
+{% if not projectList %}
+<h2 class="error">Oh there's nothing to watch there for now, come back later :)</h2>
 
-{% if projectList %}
+{% else %}
+<div class="card-container">
 <script>
     console.log("ProjectList == ok")
 </script>
@@ -52,9 +54,6 @@
 
 </script>
 </div>
-
-{% else %}
-<h2 class="error">Oh there's nothing to watch here, an internal error occured :c</h2>
 {% endif %}
 
 {% endblock %}

@@ -125,7 +125,6 @@ def delete():
         return render_template('delete.html', projectList = db.session.query(Project).all() )
     else:
         id = request.form['delete-project']
-
         image_name = Project.query.get(id).project_thumbnail
 
         for img in getImages():

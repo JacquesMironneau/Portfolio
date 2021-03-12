@@ -6,15 +6,21 @@
 {% endblock %}
 {% block content %} 
 <h2>Change a project value</h2>
+<div class="container">
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="text" name="project-name" value="{{ selected_project.project_name }}" placeholder="Project Name"><br>
 
-<form action="" method="post" enctype="multipart/form-data">
-    <input type="text" name="project-name" value="{{ selected_project.project_name }}" placeholder="Project Name">
-    <input type="text" name="project-desc" value="{{ selected_project.project_desc }}" placeholder="Project description">
-    <input type="text" name="project-url" value="{{ selected_project.project_url }}" placeholder="Project url">
-    <label for="project-thumbnail"></label>
-    <input type="file" name="project-thumbnail" value=" {{ selected_project.project_thumbnail }}">
-    <input type="submit" value="Submit changes">
-</form>
+        <input type="text" name="project-url" value="{{ selected_project.project_url }}" placeholder="Project url"><br>
+
+        <textarea name="project-desc" value="{{ selected_project.project_desc }}" placeholder="Project description"></textarea><br>
+
+
+        <label for="project-thumbnail">New thumbnail (leave empty to keep the current thumbnail)</label>
+        <input type="file" name="project-thumbnail" value=" {{ selected_project.project_thumbnail }}"><br>
+
+        <input type="submit" value="Submit changes">
+    </form>
+</div>
 
 
 {% endblock %}

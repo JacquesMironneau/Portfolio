@@ -3,17 +3,16 @@
 */
 
 #to-animate {
-    border-right: solid 0.1em white;
     white-space: nowrap;
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
     padding-top: 1.2em;
+
 }
 
 #to-animate {
-    animation: animated-text 0.9s steps(22) 0.6s 1 normal both,
-    animated-cursor 800ms steps(22) infinite;
+    animation: animated-text 0.9s steps(22) 0.6s 1 normal both;
 }
 
 #term {
