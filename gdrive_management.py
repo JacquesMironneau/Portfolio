@@ -33,7 +33,7 @@ def init_creds():
         with open("credentials.json","w") as credentials:
             credentials.write(os.environ.get('CREDS'))
 
-    if.os.environ.get('DRIVE_TOKEN'):
+    if os.environ.get('DRIVE_TOKEN'):
         with open('token.json','w') as token:
             token.write(os.environ.get('CREDS'))
 
