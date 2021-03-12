@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort, redirect, url_for, request, flash
+from flask import Flask, render_template, abort, redirect, url_for, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_required, login_user, logout_user
 from app import app, ALLOWED_EXTENSIONS
@@ -22,6 +22,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 user_data = toml.load("config.toml")
 
+
+
 @login_manager.user_loader
 def user_loader(user_id):
     """
@@ -33,7 +35,40 @@ def user_loader(user_id):
 
 @login_manager.unauthorized_handler
 def unauthorized():
+    session['next_url'] = request.url
+    print(session.get('next_url'))
     return redirect(url_for('login'))
+
+
+@app.route('/login', methods = ['GET','POST'])
+def login():
+    """
+        Display a basic login form in order to log in a user
+    """
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        try:
+            usr = User.query.get(request.form['user_id'])
+            if bcrypt.checkpw(request.form['user_password'].encode('utf-8'),usr.password):
+                login_user(usr, remember=True)
+                flash('Logged in successfully')
+                
+                return redirect(session['next_url'])
+        except Exception as e:
+            print("Sorry this user don't exist")
+            print(e)
+            return render_template('login.html')
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    """
+        Logout the actual authenticated/logged user
+    """
+    logout_user()
+    return redirect(url_for('index'))
 
 
 
@@ -189,34 +224,3 @@ def update_project(id):
 
         db.session.commit()
         return redirect(url_for('projects'))
-
-@app.route('/login', methods = ['GET','POST'])
-def login():
-    """
-        Display a basic login form in order to log in a user
-    """
-    if request.method == 'GET':
-        return render_template('login.html')
-    else:
-        try:
-            usr = User.query.get(request.form['user_id'])
-            if bcrypt.checkpw(request.form['user_password'].encode('utf-8'),usr.password):
-                login_user(usr)
-                flash('Logged in successfully')
-                
-                next = request.args.get('next')
-                return redirect(next or url_for('index'))
-        except Exception as e:
-            print("Sorry this user don't exist")
-            print(e)
-            return render_template('login.html')
-
-
-@app.route('/logout')
-@login_required
-def logout():
-    """
-        Logout the actual authenticated/logged user
-    """
-    logout_user()
-    return redirect(url_for('index'))

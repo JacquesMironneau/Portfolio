@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Log in{% endblock %}
 
-{% block content %}
-<h2> Log in </h2>
+{% block customHead %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='admin.css') }}">
+{% endblock %}
 
-<form action="", method="POST">
-    <label for="user_id">User name</label>
-    <input type="text" name="user_id" id="user_id">
-    <label for="user_password">Password</label>
-    <input type="password" name="user_password" id="user_password">
-    <input type="submit" value="Log in">
-</form>
+{% block content %}
+<div class="container">
+    <h2> Log in </h2>   
+</div>
+<div class="container">
+    <div class="login-bg">
+        <form action="", method="POST">
+            <input type="text" name="user_id" id="user_id" placeholder="username" required><br>
+
+            <input type="password" name="user_password" id="user_password" placeholder="password" required><br>
+
+            <input type="submit" value="Log in">
+        </form>
+    </div>
+</div>
 {% endblock %}

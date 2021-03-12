@@ -5,19 +5,20 @@
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='admin.css') }}">
 {% endblock %}
 {% block content %} 
-
-<h2>Add a project</h2>
+<div class="container">
+    <h2>Add a project</h2>
+</div>
 
 <div class="container">
     <form id="add-project" action = "" method = "post" enctype="multipart/form-data">
-        <input type="text" name="project_name" placeholder = "Project name"/><br>
+        <input type="text" name="project_name" placeholder = "Project name" required/><br>
         
-        <input type="text" name="project_url" placeholder = "Project url"/><br>
+        <input type="text" name="project_url" placeholder = "Project url" required/><br>
         
         <textarea name="project_desc" placeholder="Short description"></textarea><br>
         
         <label for="file">Select a file for the thumbnail</label>
-        <input type="file" name="project_thumbnail"> <br>
+        <input type="file" name="project_thumbnail" required> <br>
         
         <input id="submit" type="submit" value="Add project" accesskey="Return"/>
     </form>
