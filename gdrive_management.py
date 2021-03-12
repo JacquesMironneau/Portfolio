@@ -33,10 +33,14 @@ def init_creds():
     if os.environ.get('CREDS'):
         with open(os.path.join(os.path.abspath(os.path.dirname(__file__)),"credentials.json"),"w") as credentials:
             credentials.write(os.environ.get('CREDS'))
+            print(os.environ.get('CREDS'), flush=True)
 
     if os.environ.get('DRIVE_TOKEN'):
         with open('token.json','w') as token:
-            token.write(os.environ.get('CREDS'))
+            token.write(os.environ.get('DRIVE_TOKEN'))
+            print(os.environ.get('DRIVE_TOKEN'), flush=True)
+
+            
 
 
     creds = None
