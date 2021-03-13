@@ -78,11 +78,12 @@ class SelfStorage(Storage):
         print(f"Update file : from {old_thumbnail} to  {new_thumbnail.filename} in server files", flush=True)
 
     def __clean_useless_files(self):
-        existing_images = [project.project_thumbnail for project in db.session.query(Project).all()]
-        for file in os.listdir(self.upload_folder):
-            if not file in existing_images:
-               os.remove(os.path.join(self.upload_folder, file))
-               print(f'Delete {file} as it is no longer used')
+        if os.path.exists(self.upload_folder):
+            existing_images = [project.project_thumbnail for project in db.session.query(Project).all()]
+            for file in os.listdir(self.upload_folder):
+                if not file in existing_images:
+                    os.remove(os.path.join(self.upload_folder, file))
+                    print(f'Delete {file} as it is no longer used')
 
 
 class GdriveSyncStorage(Storage):
