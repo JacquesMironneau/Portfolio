@@ -10,7 +10,6 @@ import bcrypt
 from storage import SelfStorage, GdriveSyncStorage, Storage
 
 
-from gdrive_management import *
 
 """
 View (routing) of the project
