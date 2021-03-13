@@ -148,7 +148,7 @@ class GdriveSyncStorage(Storage):
         
         self.server_storage.delete(image_name)
 
-    def update(self, old_thumbnail_path, new_thumbnail_path):
+    def update(self, old_thumbnail_path, new_thumbnail):
         """
             Update an image (or thumbnail) by deleting the old one, and
             adding the new one
