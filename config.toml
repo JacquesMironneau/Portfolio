@@ -1,13 +1,13 @@
 [data]
-firstname="FirstName"
-lastname="LastName"
+firstname="Thomas"
+lastname="Durand"
 age=18
-languages=[ "English", "German"]
-other=[ "Driving licence", "..."]
-degree=[]
-skills=["Javascript", "Python", "Java", "C#"]
-hobbies=["Developping", "Designing", "Deploying"]
-github="GithubPseudo"
+languages=[ "French", "English", "Spanish"]
+other=[ "Driving licence (soon)" ]
+degree=[ "2 years CS degree" ]
+skills=[ "C", "C++", "Java", "Python", "Rust (beginner)", "ASM" ]
+hobbies=[ "Developping / programming", "Hacking", "3d modeling", "networks", "low-level"]
+github="https://github.com/reede-dotpng"
 linkedin="LinkedinUsername"
-cv="url"
-pp="http://www.newdesignfile.com/postpic/2011/03/unknown-person-with-question-mark_305280.jpg"
+cv="rul"
+pp="https://avatars.githubusercontent.com/u/42646590?s=460&u=787b5252e1c128be865794dba1e80ee5b3488634&v=4"
