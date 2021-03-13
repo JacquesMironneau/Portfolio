@@ -15,6 +15,8 @@ from google.oauth2.credentials import Credentials
 
 from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
 
+import gendrivetoken
+
 class Storage():
     """
         Abstract class parent of every kind of storage
@@ -90,7 +92,7 @@ class GdriveSyncStorage(Storage):
         for persistent data storage
     """
 
-    SCOPES = ['https://www.googleapis.com/auth/drive']
+    SCOPES = gendrivetoken.SCOPES
     PF_FOLDER_NAME = "portfolio_media"
     PF_FOLDER_ID = None
     PF_FOLDER_METADATA = {
@@ -110,7 +112,9 @@ class GdriveSyncStorage(Storage):
         self.server_storage = SelfStorage(upload_folder)
 
         self.creds = self.__init_creds()
-        self.gdrive_api= self.__build_gdrive_api()
+        self.api= self.__build_api()
+
+        self.drive_folder = self.__getFolder()
         
         self.download_projects_images(upload_folder)
 
@@ -126,7 +130,7 @@ class GdriveSyncStorage(Storage):
         # creating the file metadata to add it to the google drive folder
         file_md = {
             'name':filename,
-            'parents': [self.getFolder()]
+            'parents': [self.drive_folder]
         }
 
         # path of the file on the server
@@ -135,7 +139,7 @@ class GdriveSyncStorage(Storage):
         media = MediaFileUpload(filepath,
                                 mimetype=mimetypes.guess_type(filename)[0])
         # uploading the file to the google drive folder
-        file = self.gdrive_api.files().create(body=file_md,
+        file = self.api.files().create(body=file_md,
                                             media_body=media,
                                             fields='id').execute()
         print(f"File added : {file} to {self.PF_FOLDER_NAME}")
@@ -143,7 +147,7 @@ class GdriveSyncStorage(Storage):
     def delete(self, image_name):
         for img in self.getImages():
             if img.get('name') == image_name:
-                self.gdrive_api.files().delete(fileId = img.get('id')).execute()
+                self.api.files().delete(fileId = img.get('id')).execute()
                 print(f"Deleted file : {image_name} from google drive", flush=True)
         
         self.server_storage.delete(image_name)
@@ -185,27 +189,16 @@ class GdriveSyncStorage(Storage):
         if os.path.exists(self.token_path):
             creds = Credentials.from_authorized_user_file(self.token_path, self.SCOPES)
 
-        # If there are no (valid) credentials available, let the user log in
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file(self.creds_path, self.SCOPES)
-                creds = flow.run_local_server(port = 0)
-            # Save the credentials for the next run
-            with open(self.token_path,'w') as token:
-                token.write(creds.to_json())
+        return gendrivetoken.genTokenFromCreds(creds)
 
-        return creds
-
-    def __build_gdrive_api(self):
+    def __build_api(self):
         """
             Returns an object that we use to call the api
         """
         return build('drive', 'v3', credentials = self.creds)
 
     # TODO refactor: maybe add folder in attribute, check if we need to get it each time or not
-    def getFolder(self):
+    def __getFolder(self):
         """
             Get the Id of the folder stored on google drive
 
@@ -213,7 +206,7 @@ class GdriveSyncStorage(Storage):
         """
         # NOTE(thomas) we prolly should make the request first, and then execute it in a separate line
         # We create the request to find the folder named portfolio_media
-        request = self.gdrive_api.files().list(q="name='"+ self.PF_FOLDER_NAME +"'",
+        request = self.api.files().list(q="name='"+ self.PF_FOLDER_NAME +"'",
                                 spaces='drive',
                                 fields="nextPageToken, files(id, name)",
                                 pageToken=None).execute()
@@ -225,7 +218,7 @@ class GdriveSyncStorage(Storage):
             return folder
         else:
             # We create the folder named portfolio_media in the drive
-            f = self.gdrive_api.files().create(body=self.PF_FOLDER_METADATA, fields='id').execute()
+            f = self.api.files().create(body=self.PF_FOLDER_METADATA, fields='id').execute()
             print("folder created")
             return f.get('id')
 
@@ -235,7 +228,7 @@ class GdriveSyncStorage(Storage):
 
             :return Object ids: a list of images ids stored in the google drive folder
         """
-        response = self.gdrive_api.files().list(q="'" + self.getFolder() + "' in parents",
+        response = self.api.files().list(q="'" + self.drive_folder + "' in parents",
                                         spaces='drive',
                                         fields='nextPageToken, files(id, name)',
                                         pageToken = None).execute()
@@ -253,7 +246,7 @@ class GdriveSyncStorage(Storage):
             print (f"No files found in {self.PF_FOLDER_NAME}", flush=True)
         else:
             for img in images:
-                req = self.gdrive_api.files().get_media(fileId=img.get('id'))
+                req = self.api.files().get_media(fileId=img.get('id'))
                 file_header = io.BytesIO()
                 downloader = MediaIoBaseDownload(file_header, req)
                 done = False
