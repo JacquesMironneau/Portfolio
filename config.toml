@@ -1,7 +1,7 @@
 [data]
 firstname="Thomas"
 lastname="Durand"
-age=18
+age=20
 languages=[ "French", "English", "Spanish"]
 other=[ "Driving licence (soon)" ]
 degree=[ "2 years CS degree" ]
