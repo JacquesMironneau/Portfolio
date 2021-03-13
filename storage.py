@@ -253,7 +253,7 @@ class GdriveSyncStorage(Storage):
             print (f"No files found in {self.PF_FOLDER_NAME}", flush=True)
         else:
             for img in images:
-                req = gdrive_api.files().get_media(fileId=img.get('id'))
+                req = self.gdrive_api.files().get_media(fileId=img.get('id'))
                 file_header = io.BytesIO()
                 downloader = MediaIoBaseDownload(file_header, req)
                 done = False
