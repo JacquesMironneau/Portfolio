@@ -7,15 +7,15 @@ from werkzeug.utils import secure_filename
 import toml
 import os
 import bcrypt
+from storage import SelfStorage, GdriveSyncStorage, Storage
 
-from gdrive_management import *
+
 
 """
 View (routing) of the project
 """
-download_projects_images(app.config['UPLOAD_FOLDER'])
-
 upload_folder = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
+storage = GdriveSyncStorage(upload_folder)
 
 
 login_manager = LoginManager()
@@ -109,43 +109,16 @@ def add():
             # handle no selected file
             return 'no selected file'
         # if the file extension is allowed
-        if file and allowed_file(file.filename):
+        if file and storage.allowed_files(file.filename):
             filename = secure_filename(file.filename)
            
-            uploadImageToServer(file, filename)
-
-            uploadImageToDriveFolder(filename)
-
+            storage.upload(file, filename)
 
             # finally we create a new project with the informations given by the user and we adding it to the database
             project = Project(request.form['project_name'], request.form['project_desc'], request.form['project_url'], filename)
             db.session.add(project)
             db.session.commit()
             return redirect(url_for('projects'))
-
-
-def uploadImageToServer(file, filename):
-    """
-        Upload a given image to the server
-
-        :param bytes file : the binary file we will save on the server
-        :param str filename: the name of the file we want to save on the server
-    """
-    if not os.path.exists(upload_folder):
-        os.makedirs(upload_folder)
-    file.save(os.path.join(upload_folder, filename))
-
-
-def allowed_file(filename:str):
-    """
-        Checks if the extension of a given is allowed
-    """
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-@app.route('/display/<filename>')
-def display_image(filename):
-	return redirect(url_for('static', filename='upload/' + filename), code=301)
 
 @app.route('/delete/',methods=['GET','POST'])
 @login_required
@@ -161,11 +134,7 @@ def delete():
         id = request.form['delete-project']
         image_name = Project.query.get(id).project_thumbnail
 
-        for img in getImages():
-            if img.get('name') == image_name:
-                gdrive_api.files().delete(fileId=img.get('id')).execute()
-                print(f"Deleted file : {image_name} from google drive")
-        os.remove(os.path.join(upload_folder, image_name))
+        storage.delete(image_name)
 
         db.session.query(Project).filter(Project.id == id).delete()
         db.session.commit()
@@ -174,7 +143,6 @@ def delete():
 
 @app.route('/update/',methods=['GET','POST'])
 @login_required
-
 def update():
     """
         We select the project we want to update/change in a list
@@ -202,25 +170,14 @@ def update_project(id):
         p.project_name = request.form['project-name']
         p.project_desc = request.form['project-desc']
         p.project_url = request.form['project-url']
-            
-        if not request.files['project-thumbnail'].filename == '':
-            imgs = getImages()
-            for img in imgs:
-                if img.get('name') == p.project_thumbnail:
-                    gdrive_api.files().delete(fileId=img.get('id')).execute()
-            # update thumbnail of the project (delete the old one first and set the new path in the project_thumbnail variable)
-            os.remove(os.path.join(upload_folder, p.project_thumbnail))
-            p.project_thumbnail = request.files['project-thumbnail'].filename
 
-            # update the file in the update folder
+        if request.files['project-thumbnail']:
             file = request.files['project-thumbnail']
-            # if the file extension is allowed
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-            
-                uploadImageToServer(file, filename)
+            filename = file.filename
+            if filename and storage.allowed_files(filename):
 
-                uploadImageToDriveFolder(filename)
+                storage.update(p.project_thumbnail, file)
+                p.project_thumbnail = filename
 
         db.session.commit()
         return redirect(url_for('projects'))
