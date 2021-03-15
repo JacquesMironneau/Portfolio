@@ -3,7 +3,7 @@
 */
 
 body {
-    background-image: url(http://hdwpro.com/wp-content/uploads/2016/06/White-Gray-Wallpaper.jpeg);
+    background-image: url('/static/wallpaper.jpeg');
     background-repeat: repeat;
     background-size: cover;
 }
