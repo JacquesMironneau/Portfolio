@@ -4,6 +4,7 @@
 {% block title %} Project list {% endblock %}
 
 {% block customHead %}
+<link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.0.2/dist/tailwind.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='projectList.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='projects_anim.css') }}">
 {% endblock %}
@@ -11,7 +12,7 @@
 {% block content %}
 
 <div id="term">
-<h1 id="to-animate">Discover my projects</h1>
+<h1 id="to-animate">My projects 🚀</h1>
 </div>
 {% if not projectList %}
 <h2 class="error">Oh there's nothing to watch there for now, come back later :)</h2>
@@ -26,10 +27,20 @@
     <div class="circle"></div>
     <div class="content">
         <h2></h2>
+
+        <div class="flex flex-wrap">
+        {% for skill in project.skills %}
+            <div class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-{{ skill.color }}-100 bg-{{ skill.color }}-700 border border-{{ skill.color }}-700 ">
+                <div class="text-xs font-normal leading-none max-w-full flex-initial">{{ skill.name }}</div>
+            </div>
+        {% endfor %}
+        </div>
+
         <p>
 
         </p>
         <a href="#"> More details</a>
+        
     </div>
     <img src="">
 </div>
@@ -43,11 +54,11 @@
     {% for project in projectList %}
         card_content = cards[card_index].children[1] // .card .content
         card_img = cards[card_index].children[2] //. card img
-        card_content.children[0].innerHTML = '{{ project.project_name }}' // .card .content h2
-        card_content.children[1].innerHTML = '{{ project.project_desc }}' // .card .content p
-        card_content.children[2].href = '{{ project.project_url }}' // .card .content a
-        card_img.src = "{{ url_for('static', filename='upload/'+ project.project_thumbnail) }}"
-        card_img.alt = '{{ project.project_name }}' // .card img src
+        card_content.children[0].innerHTML = '{{ project.name }}' // .card .content h2
+        card_content.children[2].innerHTML = '{{ project.desc }}' // .card .content p
+        card_content.children[3].href = '{{ project.more }}' // .card .content a
+        card_img.src = "{{ url_for('static', filename='upload/'+ project.image) }}"
+        card_img.alt = '{{ project.name }}' // .card img src
         card_index++
 
     {% endfor %}

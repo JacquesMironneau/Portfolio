@@ -69,12 +69,12 @@
                                      }
                                     </span></p>
                         </div>
-                            <p>Other: 
+                            <p>Experience: 
                         <div class=" ml-8">
                                 <span class="text-gray-400">
                                     { 
-                                        {% for other in data.other %}
-                                            {% if other is sameas data.other[-1] %}
+                                        {% for other in data.experience %}
+                                            {% if other is sameas data.experience[-1] %}
                                                 {{ other }}
                                             {% else %}
                                                 {{ other }},

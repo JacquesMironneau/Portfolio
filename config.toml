@@ -1,13 +1,186 @@
 [data]
-firstname="FirstName"
-lastname="LastName"
-age=18
+firstname="Jacques"
+lastname="Mironneau"
+birth_year=2001
+birth_month=2
+birth_day=2
 languages=[ "English", "German"]
 other=[ "Driving licence", "..."]
-degree=[]
+degree=["UTT", "DUT Info"]
 skills=["Javascript", "Python", "Java", "C#"]
+experience=["siuu"]
 hobbies=["Developping", "Designing", "Deploying"]
 github="GithubPseudo"
 linkedin="LinkedinUsername"
 cv="url"
-pp="http://www.newdesignfile.com/postpic/2011/03/unknown-person-with-question-mark_305280.jpg"
+pp="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.u6p0fQYUUXQMpIfCNHtWxQHaDt%26pid%3DApi&f=1"
+
+[[projects]]
+name = "Internship"
+desc = "Magnifique project"
+image = "biovia.png"
+more = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.u6p0fQYUUXQMpIfCNHtWxQHaDt%26pid%3DApi&f=1"
+    [[projects.skills]]
+    name = "Java EE"
+    color = "red"
+
+    [[projects.skills]]
+    name = "Javascript"
+    color = "yellow"
+    
+    [[projects.skills]]
+    name = "RDF"
+    color = "teal"
+
+[[projects]]
+name = "Entrepreneurship: Théralogue"
+desc = "Magnifique project"
+image = "theralogue.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "VueJs"
+    color = "green"
+
+    [[projects.skills]]
+    name = "node"
+    color = "blue"
+    
+
+[[projects]]
+name = "Robust SMS"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "borne.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "go"
+    color = "blue"
+
+    [[projects.skills]]
+    name = "Raspberry pi"
+    color = "green"
+    
+
+[[projects]]
+name = "Ecotrip"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "borne.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "AWS"
+    color = "yellow"
+
+    [[projects.skills]]
+    name = "Lambda"
+    color = "red"
+
+[[projects]]
+name = "Covid panel IF02A"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "borne.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "UML"
+    color = "yellow"
+
+    [[projects.skills]]
+    name = "Design"
+    color = "green"
+
+[[projects]]
+name = "Covid panel LO07"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "borne.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "PHP"
+    color = "purple"
+
+    [[projects.skills]]
+    name = "Frontend"
+    color = "blue"
+
+
+[[projects]]
+name = "Student project - IPM France"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "borne.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "ASP.NET Core - C#"
+    color = "green"
+
+    [[projects.skills]]
+    name = "Docker"
+    color = "blue"
+
+[[projects]]
+name = "Netcut"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "netcut.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "Python"
+    color = "yellow"
+
+    [[projects.skills]]
+    name = "Network"
+    color = "red"
+
+[[projects]]
+name = "Shape up"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "shapeup.gif"
+more = "url yow"
+    [[projects.skills]]
+    name = "Java SE"
+    color = "red"
+
+    [[projects.skills]]
+    name = "Unit testing"
+    color = "pink"
+
+[[projects]]
+name = "Face reco"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "face_reco.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "Python"
+    color = "yellow"
+
+[[projects]]
+name = "Murpapier"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "murpapier.jpg"
+more = "url yow"
+    [[projects.skills]]
+    name = "Rust"
+    color = "red"
+
+[[projects]]
+name = "Battle Arena"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "arena.png"
+more = "url yow"
+    [[projects.skills]]
+    name = "Java SE"
+    color = "red"
+
+    [[projects.skills]]
+    name = "Unit testing"
+    color = "pink"
+
+
+[[projects]]
+name = "Mail analyzer"
+desc = "ASP.NET Core microservice developped for the IPM France company. Embedded on interactive terminal, the application handle dynamically every peripheral plugged to the device."
+image = "charts.jpg"
+more = "url yow"
+    [[projects.skills]]
+    name = "Node"
+    color = "green"
+
+    [[projects.skills]]
+    name = "Dataviz"
+    color = "pink"
+
